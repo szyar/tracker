@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Tracker
 
-Things you may want to cover:
+### Overview
 
-* Ruby version
+<p>
+  Issue tracking service that specializes in tracking issues and bugs for the software projects. You can state issues and feature request.
+</p>
 
-* System dependencies
+#### concept
 
-* Configuration
+<p>Issue Tracking System</p>
 
-* Database creation
+#### version
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<p>Ruby 2.6.5 Rails 5.2.4.4</p>
