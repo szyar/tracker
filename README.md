@@ -47,6 +47,8 @@ Ruby 2.6.5 Rails 5.2.4.4
   - [ ] Screenshot can be attached if its available
 - [ ] Issue sorting function
   - [ ] Issues can be sorted by type, priority, status and due date
+- [ ] Issue searching function
+  - [ ] Search issues by issue summary and type
 - [ ] Issue editing function (mainly for status)
 - [ ] Issue closing function (if the issue is fixed)
   - [ ] Issue closing function can only be performed by issue submitted person
