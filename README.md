@@ -20,6 +20,8 @@
 
 ## Catalog design
 
+[https://docs.google.com/spreadsheets/d/1kYtQSW86ZoTOPtnzgrpwVtif05IgUs5wtGHZEzym81c/edit?usp=sharing]
+
 ## table definition
 
 ## Screen transition diagram
