@@ -29,6 +29,8 @@ Ruby 2.6.5 Rails 5.2.4.4
 - [ ] Project creating function
   - [ ] Project name and description required
 - [ ] Project member invitation function
+- [ ] Roll setting function for project
+  - [ ] Project leader, developer, tester, user
 - [ ] Project editing function
 - [ ] Project deletion function
   - [ ] Project editing and project deletion can only be performed by the project leader
@@ -37,6 +39,13 @@ Ruby 2.6.5 Rails 5.2.4.4
   - [ ] Show the members of that project
 - [ ] Issue posting function
   - [ ] Issue summary, type, priority, assigned person, status, due date required
+  - [ ] Bug, Error, Fatal Error, Feature request and other can be specified for type
+  - [ ] Low, Medium, High, Urgent can be set for priority
+  - [ ] Developers can be assigned for assigned person
+  - [ ] If the issue submitted person can't decide who to assign, project leader should be assigned.
+  - [ ] Assigned, Doing, Done can be set for status
+- [ ] Issue sorting function
+  - [ ] Issues can be sorted by type, priority, status and due date
 - [ ] Issue editing function (mainly for status)
 - [ ] Issue closing function (if the issue is fixed)
   - [ ] Issue closing function can only be performed by issue submitted person
