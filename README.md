@@ -18,7 +18,7 @@ Ruby 2.6.5 Rails 5.2.4.4
 
 ## Catalog design
 
-(https://docs.google.com/spreadsheets/d/1kYtQSW86ZoTOPtnzgrpwVtif05IgUs5wtGHZEzym81c/edit?usp=sharing)
+<https://docs.google.com/spreadsheets/d/1kYtQSW86ZoTOPtnzgrpwVtif05IgUs5wtGHZEzym81c/edit?usp=sharing>
 
 ## table definition
 
