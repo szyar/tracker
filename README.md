@@ -14,13 +14,19 @@ Issue Tracking System
 
 Ruby 2.6.5 Rails 5.2.4.4
 
-## List of Functions
-
 ## Catalog design
 
 <https://docs.google.com/spreadsheets/d/1kYtQSW86ZoTOPtnzgrpwVtif05IgUs5wtGHZEzym81c/edit?usp=sharing>
 
+## List of Functions
+
+- [ ] Login function
+- [ ] User registration function
+  - [ ] Username, email address and password required
+
 ## table definition
+
+## ER diagram
 
 ## Screen transition diagram
 
