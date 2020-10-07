@@ -30,7 +30,7 @@ Ruby 2.6.5 Rails 5.2.4.4
   - [ ] Project name and description required
 - [ ] Project member invitation function
 - [ ] Roll setting function for project
-  - [ ] Project leader, developer, tester, user
+  - [ ] Project leader, developer, tester and user can be set for roll
 - [ ] Project editing function
 - [ ] Project deletion function
   - [ ] Project editing and project deletion can only be performed by the project leader
@@ -44,6 +44,7 @@ Ruby 2.6.5 Rails 5.2.4.4
   - [ ] Developers can be assigned for assigned person
   - [ ] If the issue submitted person can't decide who to assign, project leader should be assigned.
   - [ ] Assigned, Doing, Done can be set for status
+  - [ ] Screenshot can be attached if its available
 - [ ] Issue sorting function
   - [ ] Issues can be sorted by type, priority, status and due date
 - [ ] Issue editing function (mainly for status)
