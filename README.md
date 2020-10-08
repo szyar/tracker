@@ -38,7 +38,7 @@ Ruby 2.6.5 Rails 5.2.4.4
   - [ ] Show the name of the associated project
   - [ ] Show the members of that project
 - [ ] Issue posting function
-  - [ ] Issue summary, type, priority, assigned person, status, due date required
+  - [ ] Issue summary, detail, type, priority, assigned person, status, due date required
   - [ ] Bug, Error, Fatal Error, Feature request and other can be specified for type
   - [ ] Low, Medium, High, Urgent can be set for priority
   - [ ] Developers can be assigned for assigned person
@@ -61,6 +61,8 @@ Ruby 2.6.5 Rails 5.2.4.4
 ## table definition
 
 ## ER diagram
+
+<https://cacoo.com/diagrams/JyjJXM9uqX9c09Zt/8FA33>
 
 ## Screen transition diagram
 
