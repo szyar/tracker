@@ -70,8 +70,11 @@ Ruby 2.6.5 Rails 5.2.4.4
 
 ## Screen wireframe
 
+<https://docs.google.com/spreadsheets/d/120WjoAzYBot3WZPvVZT8XO8GqSWWyywEzFWI-CQfKBI/edit?usp=sharing>
+
 ## Use predetermined gem
 
+- hirb
 - devise
 - bcrypt
 - carrierwave
