@@ -62,9 +62,11 @@ Ruby 2.6.5 Rails 5.2.4.4
 
 ## ER diagram
 
-<https://cacoo.com/diagrams/JyjJXM9uqX9c09Zt/8FA33>
+<https://cacoo.com/diagrams/rAInc2YpjcxUv0zR/8FA33>
 
 ## Screen transition diagram
+
+<https://cacoo.com/diagrams/KCjIDXcE6zrYJjpX/0F835>
 
 ## Screen wireframe
 
