@@ -60,6 +60,8 @@ Ruby 2.6.5 Rails 5.2.4.4
 
 ## table definition
 
+<https://docs.google.com/spreadsheets/d/1yKBvVd0GN0hXSI-C5FysfnV0SlsgnLsgZ5AgR9gpWio/edit?usp=sharing>
+
 ## ER diagram
 
 <https://cacoo.com/diagrams/rAInc2YpjcxUv0zR/8FA33>
