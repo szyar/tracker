@@ -78,10 +78,8 @@ Ruby 2.6.5 Rails 5.2.4.4
 
 - hirb
 - devise
-- bcrypt
 - carrierwave
 - mini_magick
 - rspec
 - will_paginate
 - bootstrap-will_paginate
-- font-awesome-rails

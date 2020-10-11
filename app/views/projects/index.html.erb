@@ -1,29 +1,29 @@
 <% if current_user.projects.present? %>
-  <h1>Projects You Lead</h1>
+  <h2 class="text-center mb-4">Projects You Lead</h2>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th colspan="3">Actions</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @projects.each do |project| %>
-        <tr>
-          <td><%= project.name %></td>
-          <td><%= project.description %></td>
-          <td><%= link_to 'Show', project %></td>
-          <td><%= link_to 'Edit', edit_project_path(project) %></td>
-          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="container col-8">
+    <% @projects.each do |project| %>
+      <div class="card text-center">
+        <div class="card-header" style="background-color: #70adb5;">
+          <h4><%= project.name %></h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= project.description %></p>
+          <br>
+          <%= link_to 'Show', project, class:"btn", style:"background-color: #70adb5;" %>
+          <%= link_to 'Edit', edit_project_path(project), class:"btn", style:"background-color: #70adb5;" %>
+          <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' },
+              class:"btn", style:"background-color: #70adb5;" %>
+        </div>
+        <div class="card-footer text-muted">
+          <small>Created <%= time_ago_in_words(project.created_at) %> ago,
+            edited <%= time_ago_in_words(project.updated_at) %> ago</small>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
 
-<br>
-
-<%= link_to 'New Project', new_project_path %>
+<div class="text-center mt-5" >
+  <%= link_to 'New Project', new_project_path, class:"btn", style:"background-color: #70adb5;" %>
+</div>
