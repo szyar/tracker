@@ -1,6 +1,2 @@
-<h1>Editing Project</h1>
-
-<%= render 'project', project: @project %>
-
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+<%= render 'project', project_header: 'Editing Project',
+        project: @project, name: 'Edit Project' %>
