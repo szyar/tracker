@@ -12,6 +12,9 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def edit
+  end
+
   def create
     @project = Project.new(project_params)
     @project.user = current_user
@@ -20,6 +23,22 @@ class ProjectsController < ApplicationController
       redirect_to @project
     else
       render 'new'
+    end
+  end
+
+  def update
+    if @project.update(project_params)
+      flash[:notice] = "Edited Successfully"
+      redirect_to @project
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    if @project.destroy
+      flash[:notice] = "Deleted Successfully"
+      redirect_to projects_path
     end
   end
 
