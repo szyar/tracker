@@ -1,10 +1,73 @@
-<div><%= current_user.username %></div>
+<div class="row">
+  <div class="col">
+    <h2>Showing Project Details</h2>
 
-<h1>Showing Project Details</h1>
+    <p><strong>Name: </strong><%= @project.name %></p>
+    <p><strong>Description: </strong><%= @project.description %></p>
+    <%= link_to 'Home', projects_path %> |
+    <%= link_to 'Edit', edit_project_path(@project)%> |
+    <%= link_to 'Delete', project_path(@project), method: :delete,
+        data: { confirm: "Are you sure?" }%>
+  </div>
+  <div class="col">
+    <table class="table">
+      <h2>Members List</h2>
+      <thead style="background-color: #70adb5;">
+        <tr>
+          <th scope="col">Members</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-left">
+        <tr>
+          <td><%= link_to @project.user.username, profile_path(@project.user) %>(leader)</td>
+          <td><a href="#">Remove</a></td>
+        </tr>
+        <tr>
+          <td><%= link_to 'Jacob', @project %>(developer)</td>
+          <td><a href="#">Remove</a></td>
+        </tr>
+        <tr>
+          <td><%= link_to 'Larry', @project %>(tester)</td>
+          <td><a href="#">Remove</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<p><strong>Name: </strong><%= @project.name %></p>
-<p><strong>Description: </strong><%= @project.description %></p>
-<%= link_to 'Home', projects_path %> |
-<%= link_to 'Edit', edit_project_path(@project)%> |
-<%= link_to 'Delete', project_path(@project), method: :delete,
-    data: { confirm: "Are you sure?" }%>
+<table class="table">
+  <h2>Issues List</h2>
+  <thead style="background-color: #70adb5;">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Issues</th>
+      <th scope="col">Type</th>
+      <th scope="col">Assigned Person</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Make sorting feature</td>
+      <td>Feature</td>
+      <td><%= link_to @project.user.username, profile_path(@project.user) %>(leader)</td>
+      <td><a href="#">View Detail</a></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Dropdown menu not working</td>
+      <td>Bug</td>
+      <td><%= link_to @project.user.username, profile_path(@project.user) %>(leader)</td>
+      <td><a href="#">View Detail</a></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Need to fix mysql setting</td>
+      <td>Error</td>
+      <td><%= link_to @project.user.username, profile_path(@project.user) %>(leader)</td>
+      <td><a href="#">View Detail</a></td>
+    </tr>
+  </tbody>
+</table>
