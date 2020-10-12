@@ -17,6 +17,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 html, body {
+  height: 100vh;
   background-color: #E8ECED;
   font-family: 'Roboto Condensed', sans-serif;
 }
