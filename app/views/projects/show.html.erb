@@ -15,20 +15,24 @@
       <thead style="background-color: #70adb5;">
         <tr>
           <th scope="col">Members</th>
+          <th scope="col">Role</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody class="text-left">
         <tr>
-          <td><%= link_to @project.user.username, profile_path(@project.user) %>(leader)</td>
+          <td><%= link_to @project.user.username, profile_path(@project.user) %></td>
+          <td>Leader</td>
           <td><a href="#">Remove</a></td>
         </tr>
         <tr>
-          <td><%= link_to 'Jacob', @project %>(developer)</td>
+          <td><%= link_to 'Jacob', @project %></td>
+          <td>Developer</td>
           <td><a href="#">Remove</a></td>
         </tr>
         <tr>
-          <td><%= link_to 'Larry', @project %>(tester)</td>
+          <td><%= link_to 'Larry', @project %></td>
+          <td>Tester</td>
           <td><a href="#">Remove</a></td>
         </tr>
       </tbody>
@@ -52,21 +56,21 @@
       <td>1</td>
       <td>Make sorting feature</td>
       <td>Feature</td>
-      <td><%= link_to @project.user.username, profile_path(@project.user) %>(leader)</td>
+      <td><%= link_to @project.user.username, profile_path(@project.user) %></td>
       <td><a href="#">View Detail</a></td>
     </tr>
     <tr>
       <td>2</td>
       <td>Dropdown menu not working</td>
       <td>Bug</td>
-      <td><%= link_to @project.user.username, profile_path(@project.user) %>(leader)</td>
+      <td><%= link_to @project.user.username, profile_path(@project.user) %></td>
       <td><a href="#">View Detail</a></td>
     </tr>
     <tr>
       <td>3</td>
       <td>Need to fix mysql setting</td>
       <td>Error</td>
-      <td><%= link_to @project.user.username, profile_path(@project.user) %>(leader)</td>
+      <td><%= link_to @project.user.username, profile_path(@project.user) %></td>
       <td><a href="#">View Detail</a></td>
     </tr>
   </tbody>
