@@ -3,7 +3,7 @@
 
   <div class="container col-8">
     <% @projects.each do |project| %>
-      <div class="card text-center">
+      <div class="card text-center mb-4 border border-info">
         <div class="card-header" style="background-color: #70adb5;">
           <h4><%= project.name %></h4>
         </div>
@@ -24,6 +24,6 @@
   </div>
 <% end %>
 
-<div class="text-center mt-5" >
+<div class="text-center" >
   <%= link_to 'New Project', new_project_path, class:"btn", style:"background-color: #70adb5;" %>
 </div>
