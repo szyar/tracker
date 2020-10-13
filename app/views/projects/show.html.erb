@@ -43,9 +43,13 @@
               <td><%= link_to user.username, profile_path(user) %></td>
               <% project_member = ProjectMember.find_by(user_id: user.id, project_id: @project) %>
               <td><%= project_member.role %></td>
-              <td>
-                <%= link_to 'Remove', remove_path(project_member.id), method: :delete, class: 'btn btn-sm btn-danger' %>
-              </td>
+              <% if current_user.id == member.project.owner_id %>
+                <td><%= link_to 'Remove', remove_path(project_member.id), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+              <% elsif current_user.id == member.user_id %>
+                <td><%= link_to 'Remove', remove_path(project_member.id), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+              <% else %>
+                <td></td>
+              <% end %>
             </tr>
         <% end %>
       </tbody>
