@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @leader = User.find(@project.owner_id)
     @pmembers = ProjectMember.where(project_id: @project)
     @issues = @project.issues.all
   end
