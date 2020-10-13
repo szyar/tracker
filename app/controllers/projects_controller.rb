@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
 
   def show
     @pmembers = ProjectMember.where(project_id: @project)
+    @issues = @project.issues.all
   end
 
   def new
