@@ -19,6 +19,22 @@ class ProjectMembersController < ApplicationController
     end
   end
 
+  def destroy
+    member = ProjectMember.find(params[:id])
+    return unless current_user.id == (member.project.owner_id || member.user_id)
+
+    if member.role == 'Leader'
+      destroy_message = "Can't remove the leader"
+    elsif ProjectMember.where(user_id: member.id).count == 1
+      destroy_message = "Can't remove the last member"
+    elsif member.destroy
+      destroy_message = "Remove member successfully"
+    else
+      destroy_message = "Cannot remove member for some reasons"
+    end
+    redirect_to project_path(member.project_id), notice: destroy_message
+  end
+
   private
 
   def assign_params
