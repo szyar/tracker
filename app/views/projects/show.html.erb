@@ -65,7 +65,10 @@
       <td>1</td>
       <td>Make sorting feature</td>
       <td>Feature</td>
-      <td><%= link_to @project.user.username, profile_path(@project.user) %></td>
+      <td>
+        <%= link_to @project.user.username, profile_path(@project.user) %>
+        (Leader)
+      </td>
       <td><a href="#">View Detail</a></td>
     </tr>
     <tr>
