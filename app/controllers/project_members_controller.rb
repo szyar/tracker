@@ -7,8 +7,9 @@ class ProjectMembersController < ApplicationController
     project = Project.find(params[:id])
     if current_user.id == project.owner_id
       user = email_reliable?(assign_params) ? User.find_by_email(assign_params) : nil
+      role = params[:role]
       if user
-        project.invite_member(user)
+        project.invite_member(user, role)
         redirect_to project_path(project), notice: "Add member successfully"
       else
         redirect_to project_path(project), notice: "Could not add member"
