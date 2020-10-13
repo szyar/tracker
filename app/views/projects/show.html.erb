@@ -71,8 +71,10 @@
         <th scope="col">#</th>
         <th scope="col">Issues</th>
         <th scope="col">Type</th>
+        <th scope="col">Priority</th>
         <th scope="col">Assigned Person</th>
         <th scope="col">Submitted Person</th>
+        <th scope="col">Status</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -88,6 +90,9 @@
           </td>
           <td>
             <%= issue.issue_type %>
+          </td>
+          <td>
+            <%= issue.priority %>
           </td>
           <td>
             <%= link_to assigned_person.username, profile_path(issue.assigned_person) %>
@@ -106,6 +111,9 @@
               <% project_member = ProjectMember.find_by(user_id: issue.user, project_id: @project) %>
               (<%= project_member.role %>)
             <% end %>
+          </td>
+          <td>
+            <%= issue.status %>
           </td>
           <td>
             <%= link_to 'Detail', projects_path, class:"btn btn-sm mx-0 btn-outline-info" %>

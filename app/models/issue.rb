@@ -9,4 +9,7 @@ class Issue < ApplicationRecord
   validates :assigned_person, presence: true
   validates :status, presence: true
 
+  enum priority: { Low: 0, Medium: 1, High: 2, Urgent: 3 }
+  $statuses = ['Assigned', 'Doing', 'Done']
+
 end
