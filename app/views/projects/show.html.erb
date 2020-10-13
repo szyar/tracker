@@ -4,11 +4,12 @@
 
     <p><strong>Name: </strong><%= @project.name %></p>
     <p><strong>Description: </strong><%= @project.description %></p>
-    <%= link_to 'Home', projects_path %>
+    <%= link_to 'Home', projects_path, class:"btn btn-sm mx-0 btn-outline-info" %>
     <% if current_user.id == @project.owner_id %>
-      | <%= link_to 'Edit', edit_project_path(@project)%> |
-      <%= link_to 'Delete', project_path(@project), method: :delete,
-          data: { confirm: "Are you sure?" }%>
+      <%= link_to 'Edit', edit_project_path(@project), class:"btn btn-sm mx-1 btn-outline-info" %>
+      <%= link_to 'Delete', project_path(@project),
+          class:"btn btn-sm mx-0 btn-outline-info",
+          method: :delete, data: { confirm: "Are you sure?" }%>
     <% end %>
   </div>
   <div class="col">
