@@ -12,18 +12,20 @@
     <% end %>
   </div>
   <div class="col">
-    <%= form_with model: :project_member, scope: :post, url: member_path(@project.id), local: true do |form| %>
-      <div class="input-group">
-        <%= text_field_tag :email, '', { class: 'form-control', placeholder: "Enter the email address of the person you want to invite"} %>
-        <%= select_tag :roll,
-        options_for_select(["Developer", "Tester"]), class: 'form-control' %>
-        <span class="input-group-append">
-          <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
-            Invite
-          </button>
-        </span>
-      </div>
-    <% end %> <br>
+    <% if current_user.id == @project.owner_id %>
+        <%= form_with model: :project_member, scope: :post, url: member_path(@project.id), local: true do |form| %>
+        <div class="input-group">
+          <%= text_field_tag :email, '', { class: 'form-control', placeholder: "Enter the email address of the person you want to invite"} %>
+          <%= select_tag :roll,
+          options_for_select(["Developer", "Tester"]), class: 'form-control' %>
+          <span class="input-group-append">
+            <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
+              Invite
+            </button>
+          </span>
+        </div>
+      <% end %> <br>
+    <% end %>
 
     <table class="table">
       <h2>Members List</h2>
