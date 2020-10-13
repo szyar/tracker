@@ -5,4 +5,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def self.find_by_email(email)
+    user = find_by(email: email)
+    user
+  end
+
 end

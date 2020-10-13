@@ -10,14 +10,16 @@
         data: { confirm: "Are you sure?" }%>
   </div>
   <div class="col">
-    <div class="input-group">
-      <%= text_field_tag :email, '', { class: 'form-control', placeholder: "Enter the email address of the person you want to invite"} %>
-      <span class="input-group-append">
-        <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
-          Invite
-        </button>
-      </span>
-    </div> <br>
+    <%= form_with model: :project_member, scope: :post, url: member_path(@project.id), local: true do |form| %>
+      <div class="input-group">
+        <%= text_field_tag :email, '', { class: 'form-control', placeholder: "Enter the email address of the person you want to invite"} %>
+        <span class="input-group-append">
+          <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
+            Invite
+          </button>
+        </span>
+      </div>
+    <% end %> <br>
 
     <table class="table">
       <h2>Members List</h2>
@@ -29,13 +31,13 @@
         </tr>
       </thead>
       <tbody class="text-left">
-        <tr>
-          <% @project.members.each do |user| %>
+        <% @project.members.each do |user| %>
+          <tr>
             <td><%= link_to user.username, profile_path(user) %></td>
             <td>Leader</td>
             <td><a href="#">Remove</a></td>
-          <% end %>
-        </tr>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
@@ -53,8 +55,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <% @project.members.each do |user| %>
+    <% @project.members.each do |user| %>
+      <tr>
         <td>1</td>
         <td>Make sorting feature</td>
         <td>Feature</td>
@@ -63,8 +65,8 @@
           (Leader)
         </td>
         <td><a href="#">View Detail</a></td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 

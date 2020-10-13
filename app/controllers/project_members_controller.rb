@@ -4,13 +4,13 @@ class ProjectMembersController < ApplicationController
   before_action :user_exist?, only: [:create]
 
   def create
-    project = find_project(params[:project_id])
-    user = email_reliable?(assign_params) ? User.find_or_create_by_email(assign_params) : nil
+    project = Project.find(params[:id])
+    user = email_reliable?(assign_params) ? User.find_by_email(assign_params) : nil
     if user
       project.invite_member(user)
-      redirect_to projects_path(project), notice: "Create project successfully"
+      redirect_to project_path(project), notice: "Add member successfully"
     else
-      redirect_to projects_path(project), notice: "Could not create project"
+      redirect_to project_path(project), notice: "Could not add member"
     end
   end
 
@@ -21,7 +21,7 @@ class ProjectMembersController < ApplicationController
   end
 
   def email_exist?
-    project = find_project(params[:project_id])
+    project = Project.find(params[:id])
     if project.members.exists?(email: params[:email])
       redirect_to projects_path(project), notice: "Email already exist"
     end
@@ -32,14 +32,10 @@ class ProjectMembersController < ApplicationController
   end
 
   def user_exist?
-    project = find_project(params[:project_id])
+    project = Project.find(params[:id])
     unless User.exists?(email: params[:email])
       redirect_to projects_path(project), notice: "This email does not exist"
     end
-  end
-
-  def find_project(project_id)
-    project = Project.find(params[:project_id])
   end
 
 end
