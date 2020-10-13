@@ -3,5 +3,10 @@ class Issue < ApplicationRecord
   belongs_to :project
 
   validates :summary, length: { in: 6..60 }
-  validates :detail, length: { in: 6..300 }
+  validates :detail, length: { in: 6..3000 }
+  validates :type
+  validates :priority
+  validates :assigned_person
+  validates :status
+
 end
