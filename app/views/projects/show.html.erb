@@ -48,7 +48,7 @@
               <% project_member = ProjectMember.find_by(user_id: user.id, project_id: @project) %>
               <td><%= project_member.role %></td>
               <% if current_user.id == member.project.owner_id %>
-                <td class="text-right"><%= link_to 'Make Leader', projects_path, class:"btn btn-sm mx-0 btn-outline-info" %></td>
+                <td class="text-right"><%= link_to 'Make Leader', leader_path(@project, user.id), class:"btn btn-sm mx-0 btn-outline-info" %></td>
                 <td class="text-right"><%= link_to 'Remove', remove_path(project_member.id), method: :delete, class: 'btn btn-sm mx-0 btn-outline-danger' %></td>
               <% elsif current_user.id == member.user_id %>
                 <td class="text-right"><%= link_to 'Remove', remove_path(project_member.id), method: :delete, class: 'btn btn-sm mx-0 btn-outline-danger' %></td>
