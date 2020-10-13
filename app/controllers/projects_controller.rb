@@ -18,8 +18,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.owner = current_user
     if @project.save
+      @project.invite_member(current_user)
       flash[:notice] = "Project Created"
       redirect_to @project
     else

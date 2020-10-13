@@ -30,19 +30,11 @@
       </thead>
       <tbody class="text-left">
         <tr>
-          <td><%= link_to @project.user.username, profile_path(@project.user) %></td>
-          <td>Leader</td>
-          <td><a href="#">Remove</a></td>
-        </tr>
-        <tr>
-          <td><%= link_to 'Jacob', @project %></td>
-          <td>Developer</td>
-          <td><a href="#">Remove</a></td>
-        </tr>
-        <tr>
-          <td><%= link_to 'Larry', @project %></td>
-          <td>Tester</td>
-          <td><a href="#">Remove</a></td>
+          <% @project.members.each do |user| %>
+            <td><%= link_to user.username, profile_path(user) %></td>
+            <td>Leader</td>
+            <td><a href="#">Remove</a></td>
+          <% end %>
         </tr>
       </tbody>
     </table>
@@ -62,28 +54,16 @@
   </thead>
   <tbody>
     <tr>
-      <td>1</td>
-      <td>Make sorting feature</td>
-      <td>Feature</td>
-      <td>
-        <%= link_to @project.user.username, profile_path(@project.user) %>
-        (Leader)
-      </td>
-      <td><a href="#">View Detail</a></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Dropdown menu not working</td>
-      <td>Bug</td>
-      <td><%= link_to @project.user.username, profile_path(@project.user) %></td>
-      <td><a href="#">View Detail</a></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Need to fix mysql setting</td>
-      <td>Error</td>
-      <td><%= link_to @project.user.username, profile_path(@project.user) %></td>
-      <td><a href="#">View Detail</a></td>
+      <% @project.members.each do |user| %>
+        <td>1</td>
+        <td>Make sorting feature</td>
+        <td>Feature</td>
+        <td>
+          <%= link_to user.username, profile_path(user) %>
+          (Leader)
+        </td>
+        <td><a href="#">View Detail</a></td>
+      <% end %>
     </tr>
   </tbody>
 </table>
