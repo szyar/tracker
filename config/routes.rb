@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :projects
+  resources :issues
   root 'projects#index'
   get '/user/:id', to: 'users#show', as: 'profile'
   get 'owner/:project_id/:id', to: 'projects#make_leader', as: 'leader'
