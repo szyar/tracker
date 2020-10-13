@@ -63,7 +63,7 @@
   </div>
 </div>
 
-<% if @project.issues.present? %>
+<% if @issues.present? %>
   <table class="table">
     <h2>Issues List</h2>
     <thead style="background-color: #70adb5;">
@@ -116,7 +116,7 @@
             <%= issue.status %>
           </td>
           <td>
-            <%= link_to 'Detail', projects_path, class:"btn btn-sm mx-0 btn-outline-info" %>
+            <%= link_to 'Detail', issue_path(issue), class:"btn btn-sm mx-0 btn-outline-info" %>
           </td>
         </tr>
       <% end %>
