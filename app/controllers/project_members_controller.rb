@@ -5,12 +5,16 @@ class ProjectMembersController < ApplicationController
 
   def create
     project = Project.find(params[:id])
-    user = email_reliable?(assign_params) ? User.find_by_email(assign_params) : nil
-    if user
-      project.invite_member(user)
-      redirect_to project_path(project), notice: "Add member successfully"
+    if current_user.id == project.owner_id
+      user = email_reliable?(assign_params) ? User.find_by_email(assign_params) : nil
+      if user
+        project.invite_member(user)
+        redirect_to project_path(project), notice: "Add member successfully"
+      else
+        redirect_to project_path(project), notice: "Could not add member"
+      end
     else
-      redirect_to project_path(project), notice: "Could not add member"
+      redirect_to project_path(project), notice: "Only leader can invite members"
     end
   end
 

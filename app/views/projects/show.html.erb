@@ -15,6 +15,8 @@
     <%= form_with model: :project_member, scope: :post, url: member_path(@project.id), local: true do |form| %>
       <div class="input-group">
         <%= text_field_tag :email, '', { class: 'form-control', placeholder: "Enter the email address of the person you want to invite"} %>
+        <%= select_tag :roll,
+        options_for_select(["Developer", "Tester"]), class: 'form-control' %>
         <span class="input-group-append">
           <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
             Invite
@@ -53,6 +55,7 @@
       <th scope="col">Issues</th>
       <th scope="col">Type</th>
       <th scope="col">Assigned Person</th>
+      <th scope="col">Submitted Person</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -62,6 +65,10 @@
         <td>1</td>
         <td>Make sorting feature</td>
         <td>Feature</td>
+        <td>
+          <%= link_to user.username, profile_path(user) %>
+          (Leader)
+        </td>
         <td>
           <%= link_to user.username, profile_path(user) %>
           (Leader)

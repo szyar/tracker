@@ -5,7 +5,7 @@ class Project < ApplicationRecord
   validates :name, length: { in: 3..50 }
   validates :description, length: { in: 5..300 }
 
-  def invite_member(user)
-    project_members.create(user: user)
+  def invite_member(user, roll)
+    project_members.create(user: user, roll: roll)
   end
 end
