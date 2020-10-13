@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.owner_id = current_user.id
     if @project.save
       @project.invite_member(current_user)
       flash[:notice] = "Project Created"
@@ -54,7 +55,9 @@ class ProjectsController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @project.user
+    project = set_project
+    user = User.find(project.owner_id)
+    if current_user != user
       flash[:alert] = "You can only edit or delete your own projects"
       redirect_to @project
     end
