@@ -37,13 +37,14 @@
         </tr>
       </thead>
       <tbody class="text-left">
-        <% @project.members.each do |user| %>
-          <tr>
-            <td><%= link_to user.username, profile_path(user) %></td>
-            <% project_member = ProjectMember.find_by(user_id: user.id, project_id: @project) %>
-            <td><%= project_member.role %></td>
-            <td><a href="#">Remove</a></td>
-          </tr>
+        <% @members.each do |member| %>
+          <% user = User.find(member.user_id) %>
+            <tr>
+              <td><%= link_to user.username, profile_path(user) %></td>
+              <% project_member = ProjectMember.find_by(user_id: user.id, project_id: @project) %>
+              <td><%= project_member.role %></td>
+              <td><a href="#">Remove</a></td>
+            </tr>
         <% end %>
       </tbody>
     </table>
@@ -63,7 +64,8 @@
     </tr>
   </thead>
   <tbody>
-    <% @project.members.each do |user| %>
+    <% @members.each do |member| %>
+    <% user = User.find(member.user_id) %>
       <tr>
         <td>1</td>
         <td>Make sorting feature</td>
