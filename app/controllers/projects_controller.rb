@@ -56,8 +56,7 @@ class ProjectsController < ApplicationController
 
   def require_same_user
     project = set_project
-    user = User.find(project.owner_id)
-    if current_user != user
+    if current_user.id != project.owner_id
       flash[:alert] = "You can only edit or delete your own projects"
       redirect_to @project
     end

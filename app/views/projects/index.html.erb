@@ -1,5 +1,5 @@
 <% if current_user.projects.present? %>
-  <h2 class="text-center mb-4">Projects You Lead</h2>
+  <h2 class="text-center mb-4">Your Projects</h2>
 
   <div class="container col-8">
     <% @projects.each do |project| %>
@@ -11,9 +11,11 @@
           <p class="card-text"><%= project.description %></p>
           <br>
           <%= link_to 'Show', project, class:"btn", style:"background-color: #70adb5;" %>
-          <%= link_to 'Edit', edit_project_path(project), class:"btn", style:"background-color: #70adb5;" %>
-          <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' },
-              class:"btn", style:"background-color: #70adb5;" %>
+          <% if current_user.id == project.owner_id %>
+            <%= link_to 'Edit', edit_project_path(project), class:"btn", style:"background-color: #70adb5;" %>
+            <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' },
+                class:"btn", style:"background-color: #70adb5;" %>
+          <% end %>
         </div>
         <div class="card-footer text-muted">
           <small>Created <%= time_ago_in_words(project.created_at) %> ago,
