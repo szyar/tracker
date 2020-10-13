@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.owner_id = current_user.id
-    role = 'Leader'
+    role = 'Developer'
     if @project.save
       @project.invite_member(current_user, role)
       flash[:notice] = "Project Created"
@@ -28,6 +28,14 @@ class ProjectsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def make_leader
+    @user = User.find(params[:id])
+    @project = Project.find(params[:project_id])
+    @project.owner_id = @user.id
+    @project.save
+    redirect_to @project
   end
 
   def update
