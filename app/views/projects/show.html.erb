@@ -64,8 +64,7 @@
 
 <% if @issues.present? %>
   <table class="table">
-    <h2>Issues List</h2>
-    <%= will_paginate @issues %>
+    <h2 class="col">Issues List</h2>
     <thead style="background-color: #70adb5;">
       <tr>
         <th scope="col">#</th>
@@ -122,6 +121,7 @@
       <% end %>
     </tbody>
   </table>
+  <h5 class="my-3"><%= will_paginate @issues, class:"text-center" %></h5>
 <% else %>
   <h2 class="text-center my-3">Currently, there are no issues in this project. </h2>
   <h3 class="text-center my-3">
