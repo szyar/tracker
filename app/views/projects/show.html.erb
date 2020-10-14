@@ -7,7 +7,7 @@ issues frequently and issues are the main cases for the project %>
       <h2 class="col-3">Issues List</h2>
       <h5 class="col"><%= will_paginate @issues, class:"text-center" %></h5>
       <h5 class="col">
-        <%= form_tag(search_path, method: "get") do %>
+        <%= form_tag(search_path(@project), method: "get") do %>
           <div class="input-group">
             <%= text_field_tag :summary, '', { class: 'form-control', placeholder: "Enter the issue summary"} %>
             <span class="input-group-append">

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'owner/:project_id/:id', to: 'projects#make_leader', as: 'leader'
   post '/member/:id', to: 'project_members#create', as: 'member'
 
-  get '/search', to: 'issues#search'
+  get 'projects/:id/search', to: 'issues#search', as: 'search'
 
   delete 'project_members/:id', to: 'project_members#destroy', as: 'remove'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
