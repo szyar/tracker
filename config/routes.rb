@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :projects
+  
   resources :issues, except: [:new, :create]
   get '/projects/:project_id/issues', to: 'issues#new', as: 'new_issue'
   post '/projects/:project_id/issues', to: 'issues#create', as: 'create_issue'
@@ -15,5 +16,5 @@ Rails.application.routes.draw do
   get 'projects/:id/close_list', to: 'issues#close_list', as: 'close_list'
 
   delete 'project_members/:id', to: 'project_members#destroy', as: 'remove'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end
