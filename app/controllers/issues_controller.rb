@@ -9,6 +9,16 @@ class IssuesController < ApplicationController
     end
   end
 
+  def edit
+    @issue = set_issue
+    @project = Project.find(@issue.project_id)
+    @submitted = User.find_by(username: @issue.assigned_person)
+    @member_names = []
+    @project.members.each do |member|
+      @member_names << member.username
+    end
+  end
+
   def create
     @issue = Issue.new(issue_params)
     @project = Project.find(params[:project_id])
@@ -19,6 +29,16 @@ class IssuesController < ApplicationController
       redirect_to @issue
     else
       render 'new'
+    end
+  end
+
+  def update
+    @issue = set_issue
+    if @issue.update(issue_params)
+      flash[:notice] = "Edited Successfully"
+      redirect_to @issue
+    else
+      render 'edit'
     end
   end
 
