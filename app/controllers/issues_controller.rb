@@ -3,6 +3,10 @@ class IssuesController < ApplicationController
   def new
     @issue = Issue.new
     @project = Project.find(params[:project_id])
+    @member_names = []
+    @project.members.each do |member|
+      @member_names << member.username
+    end
   end
 
   def create
@@ -10,8 +14,6 @@ class IssuesController < ApplicationController
     @project = Project.find(params[:project_id])
     @issue.user_id = current_user.id
     @issue.project_id = @project.id
-    @assign = User.find_by(params[:assigned_person])
-    @issue.assigned_person = @assign.id
     if @issue.save
       flash[:notice] = "Issue Created"
       redirect_to @issue
@@ -24,7 +26,7 @@ class IssuesController < ApplicationController
     @issue = set_issue
     @project = Project.find(@issue.project_id)
     @submitted_person = User.find(@issue.user_id)
-    @assigned_person = User.find(@issue.assigned_person)
+    @assigned_person = User.find_by(username: @issue.assigned_person)
   end
 
   private
