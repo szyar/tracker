@@ -32,7 +32,7 @@
     </p>
     <p class="issue-detail-text"><strong>Status: </strong><%= @issue.status %></p>
     <% if @issue.due_date.present? %>
-      <p class="issue-detail-text"><strong>Due Date: </strong><%= @issue.due_date %></p>
+      <p class="issue-detail-text"><strong>Due Date: </strong><%= @issue.due_date.to_s(:long) %></p>
     <% end %>
     <p class="issue-detail-text">
       <strong>Action: </strong>

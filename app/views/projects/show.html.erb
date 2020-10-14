@@ -78,11 +78,11 @@
       </tr>
     </thead>
     <tbody>
-      <% @issues.each do |issue| %>
+      <% @issues.each.with_index(1) do |issue, index| %>
         <% assigned_person = User.find(issue.assigned_person) %>
         <tr>
           <td>
-            <%= issue.id %>
+            <%= index %>
           </td>
           <td>
             <%= issue.summary %>
