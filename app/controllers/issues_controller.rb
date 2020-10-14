@@ -10,6 +10,8 @@ class IssuesController < ApplicationController
     @project = Project.find(params[:project_id])
     @issue.user_id = current_user.id
     @issue.project_id = @project.id
+    @assign = User.find_by(params[:assigned_person])
+    @issue.assigned_person = @assign.id
     if @issue.save
       flash[:notice] = "Issue Created"
       redirect_to @issue
