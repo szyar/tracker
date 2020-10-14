@@ -1,5 +1,4 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
   def new
     @issue = Issue.new
@@ -8,9 +7,11 @@ class IssuesController < ApplicationController
 
   def create
     @issue = Issue.new(issue_params)
+    @project = Project.find(params[:project_id])
     @issue.user_id = current_user.id
+    @issue.project_id = @project.id
     if @issue.save
-      flash[:notice] = "issue Created"
+      flash[:notice] = "Issue Created"
       redirect_to @issue
     else
       render 'new'
@@ -18,6 +19,7 @@ class IssuesController < ApplicationController
   end
 
   def show
+    @issue = set_issue
     @project = Project.find(@issue.project_id)
     @submitted_person = User.find(@issue.user_id)
     @assigned_person = User.find(@issue.assigned_person)

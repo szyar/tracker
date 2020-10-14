@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :projects do
-    resources :issues
-  end
+  resources :projects
+  resources :issues, except: :new
+  get '/projects/:project_id/issues', to: 'issues#new', as: 'new_issue'
+
   root 'projects#index'
   get '/user/:id', to: 'users#show', as: 'profile'
   get 'owner/:project_id/:id', to: 'projects#make_leader', as: 'leader'
