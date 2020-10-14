@@ -11,11 +11,15 @@ class IssuesController < ApplicationController
 
   def edit
     @issue = set_issue
-    @project = Project.find(@issue.project_id)
-    @submitted = User.find_by(username: @issue.assigned_person)
-    @member_names = []
-    @project.members.each do |member|
-      @member_names << member.username
+    if @issue.close_issue
+      redirect_to @issue, notice: "This issue has been closed"
+    else
+      @project = Project.find(@issue.project_id)
+      @submitted = User.find_by(username: @issue.assigned_person)
+      @member_names = []
+      @project.members.each do |member|
+        @member_names << member.username
+      end
     end
   end
 
@@ -46,6 +50,8 @@ class IssuesController < ApplicationController
 
   def close_issue
     @issue = set_issue
+    @issue.toggle!(:close_issue)
+    @issue.save
     redirect_to issue_path(@issue), notice: "Close Issue Successfully"
   end
 
