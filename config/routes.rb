@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/member/:id', to: 'project_members#create', as: 'member'
 
   get 'projects/:id/search', to: 'issues#search', as: 'search'
+  get 'issues/:id', to: 'issues#close_issue', as: 'close_issue'
 
   delete 'project_members/:id', to: 'project_members#destroy', as: 'remove'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
