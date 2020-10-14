@@ -61,8 +61,11 @@ issues frequently and issues are the main cases for the project %>
             <% if assigned_person.id == @project.owner_id %>
               (Leader)
             <% else %>
-              <% project_member = ProjectMember.find_by(user_id: assigned_person.id, project_id: @project) %>
-              (<%= project_member.role %>)
+              <% if project_member = ProjectMember.find_by(user_id: assigned_person.id, project_id: @project) %>
+                (<%= project_member.role %>)
+              <% else %>
+                (Remove)
+              <% end %>
             <% end %>
           </td>
           <td>
@@ -70,8 +73,11 @@ issues frequently and issues are the main cases for the project %>
             <% if issue.user.id == @project.owner_id %>
               (Leader)
             <% else %>
-              <% project_member = ProjectMember.find_by(user_id: issue.user, project_id: @project) %>
-              (<%= project_member.role %>)
+              <% if project_member = ProjectMember.find_by(user_id: issue.user, project_id: @project) %>
+                (<%= project_member.role %>)
+              <% else %>
+                (Remove)
+              <% end %>
             <% end %>
           </td>
           <td>
