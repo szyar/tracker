@@ -1,0 +1,89 @@
+<div class="container">
+
+<% if @issue.close_issue %>
+  <div class="container mb-2">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <p>This issue is for record only.</p>
+      <p>This issue does not need to involve in project activities</p>
+      <p>Because it is resolved successfully and hence it is closed by submitted person.</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+  </div>
+<% end %>
+
+<div class="row mb-4">
+  <div class="col">
+    <h5>
+      Project Name: <%= link_to @project.name , project_path(@project) %>
+    </h5>
+  </div>
+  <div class="col text-right">
+    <h5>
+      Submitted by: <%= link_to @submitted_person.username , profile_path(@submitted_person) %>
+    </h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col" >
+    <p class="issue-detail-text">
+      <strong>Summary: </strong><%= @issue.summary %>
+    </p>
+    <p class="issue-detail-text">
+      <strong>Detail: </strong><%= @issue.detail %>
+    </p>
+    <p class="issue-detail-text">
+      <strong>Type: </strong><%= @issue.issue_type %>
+    </p>
+    <p class="issue-detail-text">
+      <strong>Priority: </strong><%= @issue.priority %>
+    </p>
+    <p class="issue-detail-text"><strong>Assigned person: </strong>
+      <%= link_to @assigned_person.username, profile_path(@assigned_person) %>
+    </p>
+    <p class="issue-detail-text"><strong>Status: </strong><%= @issue.status %></p>
+    <% if @issue.due_date.present? %>
+      <p class="issue-detail-text"><strong>Due Date: </strong><%= @issue.due_date.to_s(:long) %></p>
+    <% end %>
+    <p class="issue-detail-text">
+      <strong>Action: </strong>
+      <% if @issue.close_issue %>
+        Closed
+      <% else %>
+        <%= link_to 'Edit Issue', edit_issue_path(@issue) %>
+      <% end %>
+    </p>
+
+    <% if !@issue.close_issue %>
+    <p class="btn btn-outline-success py-2 px-3" >
+      <%= link_to 'Close Issue', close_issue_path(@issue) %>
+    </p>
+    <% end %>
+  </div>
+  <div class="col">
+    <div class="issue-detail-text mb-3">
+      <strong>Comments</strong>
+    </div>
+    <p class="my-0">
+      <%= link_to @assigned_person.username, profile_path(@assigned_person) %>
+    </p>
+    <p class="border border-info rounded my-0 p-2">
+      There is a comment
+    </p>
+    <p class="mt-0 mb-5 text-right"><%= link_to 'Edit', profile_path(@assigned_person) %></p>
+    <p>
+      <%= link_to current_user.username, profile_path(current_user) %>
+      <input class="form-control form-control-lg" type="text-area" col="4" placeholder="Write a comment">
+      <div class="text-right">
+        <p class="btn" style="background-color: #70adb5;" >
+          Comment
+        </p>
+      </div>
+    </p>
+  </div>
+</div>
+
+
+</div>

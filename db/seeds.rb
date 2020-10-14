@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Issue.create(user_id: 4, project_id: 12, summary: 'add sorting feature',
+              detail: 'sort by type, status, priority and dates',
+              issue_type: 'Feature', priority: 2, assigned_person: 5,
+              status: 'Assigned')

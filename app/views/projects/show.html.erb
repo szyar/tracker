@@ -1,4 +1,109 @@
-<div class="row">
+<%# Place Issue field at the top because developers need to check
+issues frequently and issues are the main cases for the project %>
+
+<% if @issues.present? %>
+  <table class="table">
+    <div class="row">
+      <h2 class="col-3">Issues List</h2>
+      <h5 class="col"><%= will_paginate @active_issues, class:"text-center" %></h5>
+      <h5 class="col">
+        <%= form_tag(search_path(@project), method: "get") do %>
+          <div class="input-group">
+            <%= text_field_tag :summary, '', { class: 'form-control', placeholder: "Enter the issue summary"} %>
+            <span class="input-group-append">
+              <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
+                Search
+              </button>
+            </span>
+          </div>
+        <% end %>
+      </h5>
+    </div>
+    <thead style="background-color: #70adb5;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Issues</th>
+        <th scope="col" data-toggle="tooltip" title="Sort by Type!">
+          <%= link_to 'Type', sort: "issue_type desc" %>
+          <i class="fa fa-fw fa-sort"></i>
+        </th>
+        <th scope="col" data-toggle="tooltip" title="Sort by Priority!">
+          <%= link_to 'Priority', sort: "priority desc" %>
+          <i class="fa fa-fw fa-sort"></i>
+        </th>
+        <th scope="col">Assigned Person</th>
+        <th scope="col">Submitted Person</th>
+        <th scope="col" data-toggle="tooltip" title="Sort by Status!">
+          <%= link_to 'Status', sort: "status desc" %>
+          <i class="fa fa-fw fa-sort"></i>
+        </th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @active_issues.each.with_index(1) do |issue, index| %>
+        <% assigned_person = User.find_by(username: issue.assigned_person) %>
+        <tr>
+          <td>
+            <%= index %>
+          </td>
+          <td>
+            <%= issue.summary %>
+          </td>
+          <td>
+            <%= issue.issue_type %>
+          </td>
+          <td>
+            <%= issue.priority %>
+          </td>
+          <td>
+            <%= link_to assigned_person.username, profile_path(assigned_person.id) %>
+            <% if assigned_person.id == @project.owner_id %>
+              (Leader)
+            <% else %>
+              <% if project_member = ProjectMember.find_by(user_id: assigned_person.id, project_id: @project) %>
+                (<%= project_member.role %>)
+              <% else %>
+                (Remove)
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to issue.user.username, profile_path(issue.user) %>
+            <% if issue.user.id == @project.owner_id %>
+              (Leader)
+            <% else %>
+              <% if project_member = ProjectMember.find_by(user_id: issue.user, project_id: @project) %>
+                (<%= project_member.role %>)
+              <% else %>
+                (Remove)
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= issue.status %>
+          </td>
+          <td>
+            <%= link_to 'Detail', issue_path(issue), class:"btn btn-sm mx-0 btn-outline-info" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'View Closed Issues', close_list_path(@project),
+        class:"btn btn-sm mx-0 btn-outline-info" %>
+  <div class="text-center mb-2" >
+    <%= link_to 'Add New Issue', new_issue_path(@project),
+        class:"btn mt-2 mb-5", style:"background-color: #70adb5;" %>
+  </div>
+<% else %>
+  <h2 class="text-center my-3">Currently, there are no issues in this project. </h2>
+  <h3 class="text-center my-3">
+    If you want to create one, press <%= link_to 'Add New Issue', new_issue_path(@project) %>
+  </h3>
+<% end %>
+
+<div class="row my-3">
   <div class="col">
     <h2>Showing Project Details</h2>
 
@@ -13,24 +118,26 @@
     <% end %>
   </div>
   <div class="col">
-    <% if current_user.id == @project.owner_id %>
-        <%= form_with model: :project_member, scope: :post, url: member_path(@project.id), local: true do |form| %>
-        <div class="input-group">
-          <%= text_field_tag :email, '', { class: 'form-control', placeholder: "Enter the email address"} %>
-          <%= select_tag :role,
-          options_for_select(["Developer", "Tester"]), class: 'form-control' %>
-          <span class="input-group-append">
-            <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
-              Invite
-            </button>
-          </span>
-        </div>
-      <% end %>
-    <% end %> <br>
-
     <h2>Members List</h2>
-    <% leader = User.find(@project.owner_id) %>
-    <h4>Leader: <%= link_to leader.username, profile_path(@project.owner_id) %></h4>
+    <div class="row">
+      <h4 class="col-4">Leader: <%= link_to @leader.username, profile_path(@leader) %></h4>
+      <div class="col">
+        <% if current_user.id == @project.owner_id %>
+          <%= form_with model: :project_member, scope: :post, url: member_path(@project.id), local: true do |form| %>
+            <div class="input-group">
+              <%= text_field_tag :email, '', { class: 'form-control', placeholder: "Enter the email"} %>
+              <%= select_tag :role,
+              options_for_select(["Developer", "Tester"]), class: 'form-control' %>
+              <span class="input-group-append">
+                <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
+                  Invite
+                </button>
+              </span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
     <table class="table">
       <thead style="background-color: #70adb5;">
         <tr>
@@ -61,45 +168,4 @@
       </tbody>
     </table>
   </div>
-</div>
-
-<table class="table">
-  <h2>Issues List</h2>
-  <thead style="background-color: #70adb5;">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Issues</th>
-      <th scope="col">Type</th>
-      <th scope="col">Assigned Person</th>
-      <th scope="col">Submitted Person</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pmembers.each do |member| %>
-    <% user = User.find(member.user_id) %>
-      <tr>
-        <td>1</td>
-        <td>Make sorting feature</td>
-        <td>Feature</td>
-        <td>
-          <%= link_to user.username, profile_path(user) %>
-          <% project_member = ProjectMember.find_by(user_id: user.id, project_id: @project) %>
-          (<%= project_member.role %>)
-        </td>
-        <td>
-          <%= link_to user.username, profile_path(user) %>
-          <% project_member = ProjectMember.find_by(user_id: user.id, project_id: @project) %>
-          (<%= project_member.role %>)
-        </td>
-        <td>
-          <%= link_to 'Detail', projects_path, class:"btn btn-sm mx-0 btn-outline-info" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div class="text-center" >
-  <%= link_to 'Add New Issue', new_project_path, class:"btn my-3", style:"background-color: #70adb5;" %>
 </div>

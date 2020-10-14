@@ -1,0 +1,80 @@
+<div class="container text-center">
+
+  <%= form_with(model: @issue, url: create_issue_path(@project), method: "post", local: true) do |form| %>
+    <div class="container mb-2">
+      <% if @issue.errors.any? %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+          <% @issue.errors.full_messages.each do |message| %>
+            <p><%= message %></p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="container col-9">
+      <div class="card text-center">
+        <div class="card-header bg-grey">
+          <div class="row">
+            <div class="col text-left">
+              <strong>Project Name: </strong>
+              <%= link_to @project.name, project_path(@project) %>
+            </div>
+            <div class="col text-right">
+              <strong>Submitted by: </strong>
+              <%= link_to current_user.username, profile_path(current_user) %>
+            </div>
+          </div> <br>
+          <div class="row">
+            <div class="col text-center">
+              <h1>New Issue</h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <p class="card-text text-left">
+            <%= form.label :summary %>
+            <%= form.text_field :summary, class:"form-control", placeholder:"Enter Issue Summary", autofocus: true %>
+          </p>
+          <p class="card-text text-left">
+            <%= form.label :detail %>
+            <%= form.text_area :detail, rows:"4", class:"form-control", placeholder:"Enter Detail Explanation of Issue" %>
+          </p>
+          <p class="card-text text-left">
+            <%= form.label :issue_type %>:
+            <%= form.select :issue_type,
+            options_for_select(["Bug", "Feature", "Error", "Fatal"]), class: 'form-control' %>
+          </p>
+          <p class="card-text text-left">
+            <%= form.label :priority %>:
+            <%= form.select :priority, Issue.priorities.keys, class: 'form-control' %>
+          </p>
+          <p class="card-text text-left">
+            <%= form.label :assigned_person %>:
+            <%= form.select :assigned_person, @member_names, class: 'form-control' %>
+          </p>
+          <p class="card-text text-left">
+            <%= form.label :status %>:
+            <%= form.select :status, $statuses, class: 'form-control' %>
+          </p>
+          <p class="card-text text-left">
+            <%= form.label :due_date %>:
+            <%= form.datetime_select :due_date, class: 'form-control' %>
+          </p>
+
+        </div>
+
+        <div class="card-footer">
+          <p>
+            <%= form.submit 'Create Issue', class: "btn mt-3 col-3",
+              style:"background-color: #70adb5;" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
