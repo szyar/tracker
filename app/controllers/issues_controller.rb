@@ -44,6 +44,11 @@ class IssuesController < ApplicationController
     end
   end
 
+  def close_issue
+    @issue = set_issue
+    redirect_to issue_path(@issue), notice: "Close Issue Successfully"
+  end
+
   def update
     @issue = set_issue
     if @issue.update(issue_params)
