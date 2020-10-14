@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   def show
     @leader = User.find(@project.owner_id)
     @pmembers = ProjectMember.where(project_id: @project)
-    @issues = @project.issues.all
+    @issues = @project.issues.all.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
   end
 
   def new

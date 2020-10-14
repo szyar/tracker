@@ -65,6 +65,7 @@
 <% if @issues.present? %>
   <table class="table">
     <h2>Issues List</h2>
+    <%= will_paginate @issues %>
     <thead style="background-color: #70adb5;">
       <tr>
         <th scope="col">#</th>
