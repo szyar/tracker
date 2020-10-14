@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'projects/:id/search', to: 'issues#search', as: 'search'
   get 'issues/:id/close', to: 'issues#close_issue', as: 'close_issue'
+  get 'projects/:id/close_list', to: 'issues#close_list', as: 'close_list'
 
   delete 'project_members/:id', to: 'project_members#destroy', as: 'remove'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

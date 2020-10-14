@@ -1,0 +1,81 @@
+<% if @closed_issues.present? %>
+  <table class="table">
+    <div class="row">
+      <h2 class="col-3">Closed Issues List</h2>
+      <h5 class="col-6"><%= will_paginate @closed_issues, class:"text-center" %></h5>
+      <h5 class="col">
+        <span class="text-right">Project Name: </span>
+        <%= link_to @project.name, project_path(@project), class:"text-right" %>
+      </h5>
+    </div>
+    <thead style="background-color: #70adb5;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Issues</th>
+        <th scope="col">Type</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Assigned Person</th>
+        <th scope="col">Submitted Person</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @closed_issues.each.with_index(1) do |issue, index| %>
+        <% assigned_person = User.find_by(username: issue.assigned_person) %>
+        <tr>
+          <td>
+            <%= index %>
+          </td>
+          <td>
+            <%= issue.summary %>
+          </td>
+          <td>
+            <%= issue.issue_type %>
+          </td>
+          <td>
+            <%= issue.priority %>
+          </td>
+          <td>
+            <%= link_to assigned_person.username, profile_path(assigned_person.id) %>
+            <% if assigned_person.id == @project.owner_id %>
+              (Leader)
+            <% else %>
+              <% if project_member = ProjectMember.find_by(user_id: assigned_person.id, project_id: @project) %>
+                (<%= project_member.role %>)
+              <% else %>
+                (Remove)
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to issue.user.username, profile_path(issue.user) %>
+            <% if issue.user.id == @project.owner_id %>
+              (Leader)
+            <% else %>
+              <% if project_member = ProjectMember.find_by(user_id: issue.user, project_id: @project) %>
+                (<%= project_member.role %>)
+              <% else %>
+                (Remove)
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= issue.status %>
+          </td>
+          <td>
+            <%= link_to 'Detail', issue_path(issue), class:"btn btn-sm mx-0 btn-outline-info" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="text-center mb-2" >
+    <%= link_to 'Add New Issue', new_issue_path(@project), class:"btn mt-2 mb-5", style:"background-color: #70adb5;" %>
+  </div>
+<% else %>
+  <h2 class="text-center my-3">Currently, there are no issues  in this project. </h2>
+  <h3 class="text-center my-3">
+    If you want to create one, press <%= link_to 'Add New Issue', new_issue_path(@project) %> button
+  </h3>
+<% end %>

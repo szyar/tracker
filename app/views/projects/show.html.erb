@@ -90,8 +90,11 @@ issues frequently and issues are the main cases for the project %>
       <% end %>
     </tbody>
   </table>
+  <%= link_to 'View Closed Issues', close_list_path(@project),
+        class:"btn btn-sm mx-0 btn-outline-info" %>
   <div class="text-center mb-2" >
-    <%= link_to 'Add New Issue', new_issue_path(@project), class:"btn mt-2 mb-5", style:"background-color: #70adb5;" %>
+    <%= link_to 'Add New Issue', new_issue_path(@project),
+        class:"btn mt-2 mb-5", style:"background-color: #70adb5;" %>
   </div>
 <% else %>
   <h2 class="text-center my-3">Currently, there are no issues  in this project. </h2>

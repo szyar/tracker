@@ -1,5 +1,11 @@
 class IssuesController < ApplicationController
 
+  def close_list
+    @project = Project.find(params[:id])
+    @issues = @project.issues.where(close_issue: true)
+    @closed_issues = @issues.all.order(created_at: :desc).paginate(page: params[:page], per_page: 15)
+  end
+
   def new
     @issue = Issue.new
     @project = Project.find(params[:project_id])
@@ -50,9 +56,13 @@ class IssuesController < ApplicationController
 
   def close_issue
     @issue = set_issue
-    @issue.toggle!(:close_issue)
-    @issue.save
-    redirect_to issue_path(@issue), notice: "Close Issue Successfully"
+    if @issue.status == 'Done'
+      @issue.toggle!(:close_issue)
+      @issue.save
+      redirect_to issue_path(@issue), notice: "Close Issue Successfully"
+    else
+      redirect_to issue_path(@issue), notice: "Status must be done to close issue"
+    end
   end
 
   def update
