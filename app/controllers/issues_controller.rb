@@ -32,6 +32,10 @@ class IssuesController < ApplicationController
     end
   end
 
+  def search
+
+  end
+  
   def update
     @issue = set_issue
     if @issue.update(issue_params)

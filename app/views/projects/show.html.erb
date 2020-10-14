@@ -1,70 +1,24 @@
-<div class="row">
-  <div class="col">
-    <h2>Showing Project Details</h2>
-
-    <p><strong>Name: </strong><%= @project.name %></p>
-    <p><strong>Description: </strong><%= @project.description %></p>
-    <%= link_to 'Home', projects_path, class:"btn btn-sm mx-0 btn-outline-info" %>
-    <% if current_user.id == @project.owner_id %>
-      <%= link_to 'Edit', edit_project_path(@project), class:"btn btn-sm mx-1 btn-outline-info" %>
-      <%= link_to 'Delete', project_path(@project),
-          class:"btn btn-sm mx-0 btn-outline-info",
-          method: :delete, data: { confirm: "Are you sure?" }%>
-    <% end %>
-  </div>
-  <div class="col">
-    <% if current_user.id == @project.owner_id %>
-        <%= form_with model: :project_member, scope: :post, url: member_path(@project.id), local: true do |form| %>
-        <div class="input-group">
-          <%= text_field_tag :email, '', { class: 'form-control', placeholder: "Enter the email address"} %>
-          <%= select_tag :role,
-          options_for_select(["Developer", "Tester"]), class: 'form-control' %>
-          <span class="input-group-append">
-            <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
-              Invite
-            </button>
-          </span>
-        </div>
-      <% end %>
-    <% end %> <br>
-
-    <h2>Members List</h2>
-    <h4>Leader: <%= link_to @leader.username, profile_path(@leader) %></h4>
-    <table class="table">
-      <thead style="background-color: #70adb5;">
-        <tr>
-          <th scope="col">Members</th>
-          <th scope="col">Role</th>
-          <th scope="col" class="text-center" colspan="2">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @pmembers.each do |member| %>
-          <% user = User.find(member.user_id) %>
-          <% if user.id != @project.owner_id %>
-            <tr>
-              <td><%= link_to user.username, profile_path(user) %></td>
-              <% project_member = ProjectMember.find_by(user_id: user.id, project_id: @project) %>
-              <td><%= project_member.role %></td>
-              <% if current_user.id == member.project.owner_id %>
-                <td class="text-right"><%= link_to 'Make Leader', leader_path(@project, user.id), class:"btn btn-sm mx-0 btn-outline-info" %></td>
-                <td class="text-right"><%= link_to 'Remove', remove_path(project_member.id), method: :delete, class: 'btn btn-sm mx-0 btn-outline-danger' %></td>
-              <% elsif current_user.id == member.user_id %>
-                <td class="text-right"><%= link_to 'Remove', remove_path(project_member.id), method: :delete, class: 'btn btn-sm mx-0 btn-outline-danger' %></td>
-              <% else %>
-                <td></td>
-              <% end %>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+<%# Place Issue field at the top because developers need to check
+issues frequently and issues are the main cases for the project %>
 
 <% if @issues.present? %>
   <table class="table">
-    <h2 class="col">Issues List</h2>
+    <div class="row">
+      <h2 class="col-3">Issues List</h2>
+      <h5 class="col"><%= will_paginate @issues, class:"text-center" %></h5>
+      <h5 class="col">
+        <%= form_tag(search_path, method: "get") do %>
+          <div class="input-group">
+            <%= text_field_tag :summary, '', { class: 'form-control', placeholder: "Enter the issue summary"} %>
+            <span class="input-group-append">
+              <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
+                Search
+              </button>
+            </span>
+          </div>
+        <% end %>
+      </h5>
+    </div>
     <thead style="background-color: #70adb5;">
       <tr>
         <th scope="col">#</th>
@@ -130,7 +84,9 @@
       <% end %>
     </tbody>
   </table>
-  <h5 class="my-3"><%= will_paginate @issues, class:"text-center" %></h5>
+  <div class="text-center mb-2" >
+    <%= link_to 'Add New Issue', new_issue_path(@project), class:"btn mt-2 mb-5", style:"background-color: #70adb5;" %>
+  </div>
 <% else %>
   <h2 class="text-center my-3">Currently, there are no issues in this project. </h2>
   <h3 class="text-center my-3">
@@ -138,6 +94,69 @@
   </h3>
 <% end %>
 
-<div class="text-center" >
-  <%= link_to 'Add New Issue', new_issue_path(@project), class:"btn my-3", style:"background-color: #70adb5;" %>
+<div class="row my-3">
+  <div class="col">
+    <h2>Showing Project Details</h2>
+
+    <p><strong>Name: </strong><%= @project.name %></p>
+    <p><strong>Description: </strong><%= @project.description %></p>
+    <%= link_to 'Home', projects_path, class:"btn btn-sm mx-0 btn-outline-info" %>
+    <% if current_user.id == @project.owner_id %>
+      <%= link_to 'Edit', edit_project_path(@project), class:"btn btn-sm mx-1 btn-outline-info" %>
+      <%= link_to 'Delete', project_path(@project),
+          class:"btn btn-sm mx-0 btn-outline-info",
+          method: :delete, data: { confirm: "Are you sure?" }%>
+    <% end %>
+  </div>
+  <div class="col">
+    <h2>Members List</h2>
+    <div class="row">
+      <h4 class="col-4">Leader: <%= link_to @leader.username, profile_path(@leader) %></h4>
+      <div class="col">
+        <% if current_user.id == @project.owner_id %>
+          <%= form_with model: :project_member, scope: :post, url: member_path(@project.id), local: true do |form| %>
+            <div class="input-group">
+              <%= text_field_tag :email, '', { class: 'form-control', placeholder: "Enter the email"} %>
+              <%= select_tag :role,
+              options_for_select(["Developer", "Tester"]), class: 'form-control' %>
+              <span class="input-group-append">
+                <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
+                  Invite
+                </button>
+              </span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <table class="table">
+      <thead style="background-color: #70adb5;">
+        <tr>
+          <th scope="col">Members</th>
+          <th scope="col">Role</th>
+          <th scope="col" class="text-center" colspan="2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pmembers.each do |member| %>
+          <% user = User.find(member.user_id) %>
+          <% if user.id != @project.owner_id %>
+            <tr>
+              <td><%= link_to user.username, profile_path(user) %></td>
+              <% project_member = ProjectMember.find_by(user_id: user.id, project_id: @project) %>
+              <td><%= project_member.role %></td>
+              <% if current_user.id == member.project.owner_id %>
+                <td class="text-right"><%= link_to 'Make Leader', leader_path(@project, user.id), class:"btn btn-sm mx-0 btn-outline-info" %></td>
+                <td class="text-right"><%= link_to 'Remove', remove_path(project_member.id), method: :delete, class: 'btn btn-sm mx-0 btn-outline-danger' %></td>
+              <% elsif current_user.id == member.user_id %>
+                <td class="text-right"><%= link_to 'Remove', remove_path(project_member.id), method: :delete, class: 'btn btn-sm mx-0 btn-outline-danger' %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
