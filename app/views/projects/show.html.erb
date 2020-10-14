@@ -69,11 +69,20 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Issues</th>
-        <th scope="col">Type</th>
-        <th scope="col">Priority</th>
+        <th scope="col" data-toggle="tooltip" title="Sort by Type!">
+          <%= link_to 'Type', sort: "issue_type desc" %>
+          <i class="fa fa-fw fa-sort"></i>
+        </th>
+        <th scope="col" data-toggle="tooltip" title="Sort by Priority!">
+          <%= link_to 'Priority', sort: "priority desc" %>
+          <i class="fa fa-fw fa-sort"></i>
+        </th>
         <th scope="col">Assigned Person</th>
         <th scope="col">Submitted Person</th>
-        <th scope="col">Status</th>
+        <th scope="col" data-toggle="tooltip" title="Sort by Status!">
+          <%= link_to 'Status', sort: "status desc" %>
+          <i class="fa fa-fw fa-sort"></i>
+        </th>
         <th scope="col">Action</th>
       </tr>
     </thead>

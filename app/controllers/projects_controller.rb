@@ -7,9 +7,14 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @sort = params[:sort]
     @leader = User.find(@project.owner_id)
     @pmembers = ProjectMember.where(project_id: @project)
-    @issues = @project.issues.all.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
+    if @sort
+      @issues = @project.issues.all.order(@sort).paginate(page: params[:page], per_page: 5)
+    else
+      @issues = @project.issues.all.order(created_at: :desc).paginate(page: params[:page], per_page: 5)
+    end
   end
 
   def new
