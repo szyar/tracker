@@ -115,7 +115,7 @@
             <%= issue.status %>
           </td>
           <td>
-            <%= link_to 'Detail', issue_path(issue), class:"btn btn-sm mx-0 btn-outline-info" %>
+            <%= link_to 'Detail', project_issue_path(@project, issue), class:"btn btn-sm mx-0 btn-outline-info" %>
           </td>
         </tr>
       <% end %>
