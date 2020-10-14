@@ -5,7 +5,7 @@ issues frequently and issues are the main cases for the project %>
   <table class="table">
     <div class="row">
       <h2 class="col-3">Issues List</h2>
-      <h5 class="col"><%= will_paginate @issues, class:"text-center" %></h5>
+      <h5 class="col"><%= will_paginate @active_issues, class:"text-center" %></h5>
       <h5 class="col">
         <%= form_tag(search_path(@project), method: "get") do %>
           <div class="input-group">
@@ -41,7 +41,7 @@ issues frequently and issues are the main cases for the project %>
       </tr>
     </thead>
     <tbody>
-      <% @issues.each.with_index(1) do |issue, index| %>
+      <% @active_issues.each.with_index(1) do |issue, index| %>
         <% assigned_person = User.find_by(username: issue.assigned_person) %>
         <tr>
           <td>
@@ -94,7 +94,7 @@ issues frequently and issues are the main cases for the project %>
     <%= link_to 'Add New Issue', new_issue_path(@project), class:"btn mt-2 mb-5", style:"background-color: #70adb5;" %>
   </div>
 <% else %>
-  <h2 class="text-center my-3">Currently, there are no issues in this project. </h2>
+  <h2 class="text-center my-3">Currently, there are no issues  in this project. </h2>
   <h3 class="text-center my-3">
     If you want to create one, press <%= link_to 'Add New Issue', new_issue_path(@project) %> button
   </h3>
