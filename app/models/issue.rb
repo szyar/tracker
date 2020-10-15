@@ -1,6 +1,7 @@
 class Issue < ApplicationRecord
   belongs_to :user
   belongs_to :project
+  has_many :comments, dependent: :destroy
 
   validates :summary, length: { in: 6..60 }
   validates :detail, length: { in: 6..3000 }
