@@ -48,7 +48,7 @@ class ProjectMembersController < ApplicationController
   def email_exist?
     project = Project.find(params[:id])
     if project.members.exists?(email: params[:email])
-      redirect_to projects_path(project), notice: "Email already exist"
+      redirect_to project_path(project), notice: "Email already exist"
     end
   end
 
@@ -59,7 +59,7 @@ class ProjectMembersController < ApplicationController
   def user_exist?
     project = Project.find(params[:id])
     unless User.exists?(email: params[:email])
-      redirect_to projects_path(project), notice: "This email does not exist"
+      redirect_to project_path(project), notice: "This email does not exist"
     end
   end
 
