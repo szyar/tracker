@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :projects
-  
-  resources :issues, except: [:new, :create]
+
+  resources :issues, except: [:new, :create] do
+    resources :comments
+  end
   get '/projects/:project_id/issues', to: 'issues#new', as: 'new_issue'
   post '/projects/:project_id/issues', to: 'issues#create', as: 'create_issue'
 
