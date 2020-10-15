@@ -1,7 +1,14 @@
-<%= render 'layouts/messages' %>
-<% comments.each do |comment| %>
+<% if flash.alert %>
+  <div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
+    <%= flash.alert %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
 
-  <div class="container mb-2">
+<% comments.each do |comment| %>
+  <div class="container mt-0 mb-2">
     <% if comment.errors.any? %>
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <h4><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h4>

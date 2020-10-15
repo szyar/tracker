@@ -6,10 +6,10 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     respond_to do |format|
       if @comment.save
-        flash.now[:notice] = 'Commented'
+        flash.now[:alert] = 'Commented'
         format.js { render :index }
       else
-        flash.now[:notice] = 'Comment cannot be blank'
+        flash.now[:alert] = 'Comment cannot be blank'
         format.js { render :index }
       end
     end
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     @comment = @issue.comments.find(params[:id])
     if current_user == @comment.user
       respond_to do |format|
-        flash.now[:notice] = 'Editing a comment'
+        flash.now[:alert] = 'Editing a comment'
         format.js { render :edit }
       end
     else
@@ -31,10 +31,10 @@ class CommentsController < ApplicationController
     @comment = @issue.comments.find(params[:id])
       respond_to do |format|
         if @comment.update(comment_params)
-          flash.now[:notice] = 'The comment has been edited'
+          flash.now[:alert] = 'The comment has been edited'
           format.js { render :index }
         else
-          flash.now[:notice] = 'Failed to edit comment'
+          flash.now[:alert] = 'Failed to edit comment'
           format.js { render :edit_error }
         end
       end
@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
     if current_user == @comment.user
       @comment.destroy
       respond_to do |format|
-        flash.now[:notice] = 'Comment deleted'
+        flash.now[:alert] = 'Comment deleted'
         format.js { render :index }
       end
     else
