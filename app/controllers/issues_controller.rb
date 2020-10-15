@@ -56,12 +56,17 @@ class IssuesController < ApplicationController
 
   def close_issue
     @issue = set_issue
-    if @issue.status == 'Done'
-      @issue.toggle!(:close_issue)
-      @issue.save
-      redirect_to issue_path(@issue), notice: "Close Issue Successfully"
+    @project = Project.find(@issue.project_id)
+    if current_user.id == @issue.user_id || current_user.id == @project.owner_id
+      if @issue.status == 'Done'
+        @issue.toggle!(:close_issue)
+        @issue.save
+        redirect_to issue_path(@issue), notice: "Close Issue Successfully"
+      else
+        redirect_to issue_path(@issue), notice: "Status must be done to close issue"
+      end
     else
-      redirect_to issue_path(@issue), notice: "Status must be done to close issue"
+      redirect_to issue_path(@issue), notice: "Only leader or submitted person can close the issue"
     end
   end
 
