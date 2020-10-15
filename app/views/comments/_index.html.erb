@@ -1,14 +1,16 @@
 <% comments.each do |comment| %>
   <% if comment.id.present? %>
-    <p class="my-0">
+    <p class="mt-3 mb-0">
       <%= link_to comment.user.username, profile_path(comment.user) %>
     </p>
     <p class="border border-info rounded my-0 p-2">
       <%= comment.content %>
     </p>
-    <p class="mt-0 mb-2 text-right">
-      <%= link_to 'Edit', profile_path(@assigned_person) %> |
-      <%= link_to 'Delete', profile_path(@assigned_person) %>
-    </p>
+    <% if current_user == comment.user %>
+      <p class="mt-0 text-right">
+        <%= link_to 'Edit', profile_path(@assigned_person) %> |
+        <%= link_to 'Delete', profile_path(@assigned_person) %>
+      </p>
+    <% end %>
   <% end %>
 <% end %>

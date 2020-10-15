@@ -9,7 +9,7 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="field mt-5">
     <%= link_to current_user.username, profile_path(current_user) %>
     <%= form.text_area :content, class:"form-control form-control-lg", type:"text-area", col:"4", placeholder:"Write a comment" %>
   </div>
