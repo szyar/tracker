@@ -56,10 +56,12 @@
       <% end %>
     </p>
 
-    <% if !@issue.close_issue %>
-    <p class="btn btn-outline-success py-2 px-3" >
-      <%= link_to 'Close Issue', close_issue_path(@issue) %>
-    </p>
+    <% if current_user.id == @issue.user_id || current_user.id == @project.owner_id %>
+      <% if !@issue.close_issue %>
+        <p class="btn btn-outline-success py-2 px-3" >
+          <%= link_to 'Close Issue', close_issue_path(@issue) %>
+        </p>
+      <% end %>
     <% end %>
   </div>
   <div class="col">
