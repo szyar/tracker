@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to issue_path(@issue), notice: 'Commented' }
+        format.js { render :index }
       else
         format.html { redirect_to issue_path(@issue), notice: 'Comment can not be blank' }
       end
