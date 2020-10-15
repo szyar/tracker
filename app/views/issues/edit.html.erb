@@ -23,6 +23,9 @@
               <strong>Project Name: </strong>
               <%= link_to @project.name, project_path(@project) %>
             </div>
+            <div class="col text-center">
+              <%= link_to 'Back to Issue', issue_path(@issue) %>
+            </div>
             <div class="col text-right">
               <strong>Submitted by: </strong>
               <%= link_to @issue.user.username, profile_path(current_user) %>
