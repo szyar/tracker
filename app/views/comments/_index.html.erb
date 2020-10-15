@@ -1,0 +1,10 @@
+<% comments.each do |comment| %>
+  <% if comment.id.present? %>
+    <p class="my-0">
+      <%= link_to comment.user.username, profile_path(comment.user) %>
+    </p>
+    <p class="border border-info rounded my-0 p-2">
+      <%= comment.content %>
+    </p>
+  <% end %>
+<% end %>
