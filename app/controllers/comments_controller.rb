@@ -6,9 +6,11 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     respond_to do |format|
       if @comment.save
+        flash.now[:notice] = 'Commented'
         format.js { render :index }
       else
-        format.html { redirect_to issue_path(@issue), notice: 'Comment can not be blank' }
+        flash.now[:notice] = 'Comment cannot be blank'
+        format.js { render :index }
       end
     end
   end
@@ -48,7 +50,7 @@ class CommentsController < ApplicationController
       end
     else
       redirect_to issue_path(@issue), notice: "You can only edit and delete your comments"
-    end 
+    end
   end
 
   private
