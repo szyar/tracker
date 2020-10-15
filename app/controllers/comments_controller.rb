@@ -15,9 +15,13 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = @issue.comments.find(params[:id])
-    respond_to do |format|
-      flash.now[:notice] = 'Editing a comment'
-      format.js { render :edit }
+    if current_user == @comment.user
+      respond_to do |format|
+        flash.now[:notice] = 'Editing a comment'
+        format.js { render :edit }
+      end
+    else
+      redirect_to issue_path(@issue), notice: "You can only edit and delete your comments"
     end
   end
 
@@ -36,11 +40,15 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    respond_to do |format|
-      flash.now[:notice] = 'Comment deleted'
-      format.js { render :index }
-    end
+    if current_user == @comment.user
+      @comment.destroy
+      respond_to do |format|
+        flash.now[:notice] = 'Comment deleted'
+        format.js { render :index }
+      end
+    else
+      redirect_to issue_path(@issue), notice: "You can only edit and delete your comments"
+    end 
   end
 
   private
