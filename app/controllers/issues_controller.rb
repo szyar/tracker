@@ -85,6 +85,8 @@ class IssuesController < ApplicationController
     @project = Project.find(@issue.project_id)
     @submitted_person = User.find(@issue.user_id)
     @assigned_person = User.find_by(username: @issue.assigned_person)
+    @comments = @issue.comments
+    @comment = @issue.comments.build
   end
 
   private

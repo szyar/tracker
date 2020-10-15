@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to issue_path(@issue), notice: 'Commented' }
       else
-        format.html { redirect_to issue_path(@issue), notice: 'Could not post...' }
+        format.html { redirect_to issue_path(@issue), notice: 'Comment can not be blank' }
       end
     end
   end
@@ -18,5 +18,5 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:issue_id, :content)
   end
-  
+
 end

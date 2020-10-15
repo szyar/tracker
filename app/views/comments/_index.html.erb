@@ -6,5 +6,9 @@
     <p class="border border-info rounded my-0 p-2">
       <%= comment.content %>
     </p>
+    <p class="mt-0 mb-2 text-right">
+      <%= link_to 'Edit', profile_path(@assigned_person) %> |
+      <%= link_to 'Delete', profile_path(@assigned_person) %>
+    </p>
   <% end %>
 <% end %>

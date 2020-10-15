@@ -68,21 +68,11 @@
     <div class="issue-detail-text mb-3">
       <strong>Comments</strong>
     </div>
-    <p class="my-0">
-      <%= link_to @assigned_person.username, profile_path(@assigned_person) %>
-    </p>
-    <p class="border border-info rounded my-0 p-2">
-      There is a comment
-    </p>
-    <p class="mt-0 mb-5 text-right"><%= link_to 'Edit', profile_path(@assigned_person) %></p>
+    <div id="comments_area">
+      <%= render partial: 'comments/index', locals: { comments: @comments, issue: @issue } %>
+    </div>
     <p>
-      <%= link_to current_user.username, profile_path(current_user) %>
-      <input class="form-control form-control-lg" type="text-area" col="4" placeholder="Write a comment">
-      <div class="text-right">
-        <p class="btn" style="background-color: #70adb5;" >
-          Comment
-        </p>
-      </div>
+      <%= render partial: 'comments/form', locals: { comment: @comment, issue: @issue } %>
     </p>
   </div>
 </div>
