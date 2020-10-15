@@ -9,7 +9,8 @@
     <% if current_user == comment.user %>
       <p class="mt-0 text-right">
         <%= link_to 'Edit', edit_issue_comment_path(issue, comment), remote: true %> |
-        <%= link_to 'Delete', profile_path(@assigned_person) %>
+        <%= link_to 'Delete', issue_comment_path(comment.issue_id, comment.id), method: :delete, remote: true,
+                                        data: { confirm: "Do you really want to delete this?"} %>
       </p>
     <% end %>
   <% end %>
