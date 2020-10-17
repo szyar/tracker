@@ -45,6 +45,14 @@ Project.create(name: 'test_project_4', description: 'test project 4 description'
 Project.create(name: 'test_project_5', description: 'test project 5 description',
                 owner_id: 6)
 
+ProjectMember.create(role: 'Developer', user_id: 4, project_id: 3)
+ProjectMember.create(role: 'Tester', user_id: 6, project_id: 1)
+ProjectMember.create(role: 'Developer', user_id: 7, project_id: 2)
+ProjectMember.create(role: 'Tester', user_id: 5, project_id: 4)
+ProjectMember.create(role: 'Developer', user_id: 6, project_id: 5)
+ProjectMember.create(role: 'Developer', user_id: 5, project_id: 2)
+ProjectMember.create(role: 'Developer', user_id: 2, project_id: 3)
+
 Issue.create(user_id: 4, project_id: 12, summary: 'add sorting feature',
               detail: 'sort by type, status, priority and dates',
               issue_type: 'Feature', priority: 2, assigned_person: 5,

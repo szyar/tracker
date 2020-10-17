@@ -51,11 +51,11 @@ Ruby 2.6.5 Rails 5.2.4.4
 - [x] Issue editing function (mainly for status)
 - [x] Issue closing function (if the issue is fixed)
   - [x] Issue closing function can only be performed by issue submitted person
-- [ ] Comment posting function
-  - [ ] Comment for the associated issue
-- [ ] Comment editing function
-- [ ] Comment deletion function
-  - [ ] Comment editing and comment deletion are possible only for the commenter
+- [x] Comment posting function
+  - [x] Comment for the associated issue
+- [x] Comment editing function
+- [x] Comment deletion function
+  - [x] Comment editing and comment deletion are possible only for the commenter
 
 ## table definition
 
