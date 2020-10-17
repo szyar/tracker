@@ -69,6 +69,12 @@
             <%= form.datetime_select :due_date, class: 'form-control' %>
           </p>
 
+          <p class="card-text text-left">
+            <%= form.label :image %>:
+            <%= form.file_field :image %>
+            <%= form.hidden_field :image_cache %>
+          </p>
+
         </div>
 
         <div class="card-footer">

@@ -56,6 +56,16 @@
       <% end %>
     </p>
 
+    <% if @issue.image? %>
+      <p class="issue-detail-text">
+        <strong>Screenshot: </strong>
+      </p>
+    <% end %>
+    
+    <p class="issue-detail-text">
+      <%= image_tag(@issue.image.url, size: "500x300") if @issue.image? %>
+    </p>
+
     <% if current_user.id == @issue.user_id || current_user.id == @project.owner_id %>
       <% if !@issue.close_issue %>
         <p class="btn btn-outline-success py-2 px-3" >

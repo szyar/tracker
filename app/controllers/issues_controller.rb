@@ -98,7 +98,7 @@ class IssuesController < ApplicationController
   def issue_params
     params.require(:issue).permit(:user_id, :project_id, :summary,
        :detail, :issue_type, :priority, :assigned_person, :status,
-       :due_date)
+       :due_date, :image, :image_cache)
   end
 
 end
