@@ -1,6 +1,9 @@
 <% if @results.present? %>
   <table class="table">
     <h2 class="text-center mb-4">Search Results</h2>
+    <h5>
+      Project Name: <%= link_to @project.name , project_path(@project) %>
+    </h5>
     <thead style="background-color: #70adb5;">
       <tr>
         <th scope="col">#</th>
