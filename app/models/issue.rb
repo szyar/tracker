@@ -17,7 +17,6 @@ class Issue < ApplicationRecord
 
   scope :search, ->(project, summary, type) {
     @project = project
-    @leader = User.find(@project.owner_id)
     @pmembers = ProjectMember.where(project_id: @project)
     @summary_param = summary.to_s.downcase
     @type_param = type.to_s.downcase
