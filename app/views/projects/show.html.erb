@@ -10,7 +10,10 @@ issues frequently and issues are the main cases for the project %>
       <h5 class="col">
         <%= form_tag(search_path(@project), method: "get") do %>
           <div class="input-group">
-            <%= text_field_tag :summary, '', { class: 'form-control', placeholder: "Enter the issue summary"} %>
+            <%= text_field_tag :summary, '', { class: 'form-control',
+                  placeholder: "Enter the issue summary"} %>
+            <%= select_tag :type,
+                  options_for_select(["", "Bug", "Feature", "Error", "Fatal", "Other"]) %>
             <span class="input-group-append">
               <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
                 Search

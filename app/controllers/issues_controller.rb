@@ -43,12 +43,9 @@ class IssuesController < ApplicationController
   end
 
   def search
-    if params[:summary].present?
-      @project = Project.find(params[:id])
-      @leader = User.find(@project.owner_id)
-      @pmembers = ProjectMember.where(project_id: @project)
-      @summary_param = params[:summary].to_s.downcase
-      @results = @project.issues.where("lower(summary) LIKE ?", "%#{@summary_param}%")
+    @project = Project.find(params[:id])
+    if params[:summary].present? || params[:type].present?
+      @results = Issue.search(@project, params[:summary], params[:type])
     else
       redirect_to project_path, notice: "Please provide the search texts"
     end
