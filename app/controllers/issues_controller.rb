@@ -47,7 +47,7 @@ class IssuesController < ApplicationController
     if params[:summary].present? || params[:type].present?
       @results = Issue.search(@project, params[:summary], params[:type])
     else
-      redirect_to project_path, notice: "Please provide the search texts"
+      redirect_to project_path, notice: "Please provide the search keyword or select the issue type"
     end
   end
 
