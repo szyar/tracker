@@ -3,7 +3,7 @@ issues frequently and issues are the main cases for the project %>
 
 <h1 class="text-center"><%= @project.name %></h1>
 <% if @issues.present? %>
-  <table class="table">
+  <table class="table table-hover">
     <div class="row">
       <h2 class="col-3">Issues List</h2>
       <h5 class="col"><%= will_paginate @active_issues, class:"text-center" %></h5>
