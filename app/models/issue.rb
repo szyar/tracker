@@ -14,7 +14,7 @@ class Issue < ApplicationRecord
 
   enum issue_type: { Other: 0, Feature: 1, Bug: 2, Error: 3, Fatal: 4 }
   enum priority: { Low: 0, Medium: 1, High: 2, Urgent: 3 }
-  enum status: { Init: 0, Assigned: 1, Doin: 2, Done: 3 }
+  enum status: { Init: 0, Assigned: 1, Doing: 2, Done: 3 }
 
   scope :search, ->(project, summary, type) {
     @project = project
