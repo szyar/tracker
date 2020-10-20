@@ -6,7 +6,7 @@ FactoryBot.define do
     detail { 'test detail' }
     issue_type { 'Bug' }
     priority { 'High' }
-    assigned_person { 'user2' }
+    assigned_person { 'User2' }
     status { 'Init' }
   end
   factory :issue2, class: Issue do
@@ -16,7 +16,7 @@ FactoryBot.define do
     detail { 'test detail' }
     issue_type { 'Feature' }
     priority { 'High' }
-    assigned_person { 'user2' }
-    status { 'Init' }
+    assigned_person { 'User2' }
+    status { 'Done' }
   end
 end
