@@ -86,4 +86,37 @@ RSpec.feature "Issues", type: :feature do
     end
   end
 
+  describe "Issue search function test" do
+    context "Test search functionality" do
+      before(:each) do
+        visit root_path
+        within("form") do
+          fill_in('Email', with: 'user1@gmail.com')
+          fill_in('Password', with: 'hellouser1')
+          click_button "Log in"
+        end
+      end
+      it "Search by summary success" do
+        click_link "Show", match: :first
+        fill_in('Enter the issue summary', with: 'test')
+        click_button "Search"
+        expect(page).to have_content("test summary")
+      end
+      it "Search by issue type success" do
+        click_link "Show", match: :first
+        select 'Error', from: :type
+        click_button "Search"
+        expect(page).to have_content("Error")
+      end
+      it "Search by both summary and issue type success" do
+        click_link "Show", match: :first
+        fill_in('Enter the issue summary', with: 'test')
+        select 'Bug', from: :type
+        click_button "Search"
+        expect(page).to have_content("test summary")
+        expect(page).to have_content("Bug")
+      end
+    end
+  end
+
 end
