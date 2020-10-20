@@ -13,7 +13,7 @@ issues frequently and issues are the main cases for the project %>
             <%= text_field_tag :summary, '', { class: 'form-control',
                   placeholder: "Enter the issue summary"} %>
             <%= select_tag :type,
-                  options_for_select(["", "Bug", "Feature", "Error", "Fatal", "Other"]) %>
+                  options_for_select(["", "Other", "Feature", "Bug", "Error", "Fatal"]) %>
             <span class="input-group-append">
               <button type="submit" class="btn btn-flat" style="background-color: #70adb5;">
                 Search
