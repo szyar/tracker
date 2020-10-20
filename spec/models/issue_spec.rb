@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Issue, type: :model do
-  # FactoryBot.create(:user2)
-  # FactoryBot.create(:user3)
   # describe 'Validation test' do
   #   context 'If the summary is empty' do
   #     it 'Can\'t register an issue without providing summary' do

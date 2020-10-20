@@ -6,7 +6,12 @@ FactoryBot.define do
   end
   factory :project_member2, class: ProjectMember do
     role { 'Developer' }
-    user_id { 6 }
+    user_id { 2 }
     project_id { 2 }
+  end
+  factory :project_member3, class: ProjectMember do
+    role { 'Developer' }
+    user_id { 3 }
+    project_id { 1 }
   end
 end

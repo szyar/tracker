@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ProjectMember, type: :model do
-  # FactoryBot.create(:user1)
-  # FactoryBot.create(:project1)
   # describe 'Validation test' do
   #   context 'If role is empty' do
   #     it 'Can\'t register a project member without providing role' do

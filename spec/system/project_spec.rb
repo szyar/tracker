@@ -22,9 +22,6 @@ RSpec.feature "Projects", type: :feature do
   # end
 
   # describe "Project show page test" do
-  #   FactoryBot.create(:user1)
-  #   # FactoryBot.create(:project1)
-  #   # FactoryBot.create(:project_member1)
   #   context "Show a project" do
   #     before(:each) do
   #       visit root_path
