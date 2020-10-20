@@ -119,4 +119,37 @@ RSpec.feature "Issues", type: :feature do
     end
   end
 
+  describe "Issue sorting function test" do
+    user = User.first
+    project = user.projects.first
+    context "Sort by issue type, priority and status" do
+      before(:each) do
+        visit root_path
+        within("form") do
+          fill_in('Email', with: 'user1@gmail.com')
+          fill_in('Password', with: 'hellouser1')
+          click_button "Log in"
+        end
+      end
+      it "Sort by issue type success" do
+        click_link "Show", match: :first
+        issue_list = project.issues.all.order(issue_type: :desc)
+        issue = issue_list.first
+        expect(issue.summary).to eq("test summary2")
+      end
+      it "Sort by priority success" do
+        click_link "Show", match: :first
+        issue_list = project.issues.all.order(priority: :desc)
+        issue = issue_list.first
+        expect(issue.summary).to eq("test summary2")
+      end
+      it "Sort by status success" do
+        click_link "Show", match: :first
+        issue_list = project.issues.all.order(status: :desc)
+        issue = issue_list.first
+        expect(issue.summary).to eq("test summary2")
+      end
+    end
+  end
+
 end
