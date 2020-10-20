@@ -46,8 +46,7 @@
           </p>
           <p class="card-text text-left">
             <%= form.label :issue_type %>:
-            <%= form.select :issue_type,
-            options_for_select(["Bug", "Feature", "Error", "Fatal", "Other"]), class: 'form-control' %>
+            <%= form.select :issue_type, Issue.issue_types.keys, class: 'form-control' %>
           </p>
           <p class="card-text text-left">
             <%= form.label :priority %>:
@@ -59,7 +58,7 @@
           </p>
           <p class="card-text text-left">
             <%= form.label :status %>:
-            <%= form.select :status, $statuses, class: 'form-control' %>
+            <%= form.select :status, Issue.statuses.keys, class: 'form-control' %>
           </p>
           <p class="card-text text-left">
             <%= form.label :due_date %>:
