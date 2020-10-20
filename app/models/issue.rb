@@ -20,17 +20,17 @@ class Issue < ApplicationRecord
     @project = project
     @pmembers = ProjectMember.where(project_id: @project)
     @summary_param = summary.to_s.downcase
-    @type_param = Issue.issue_types.key(type)
+    @type_param = type
 
     if @summary_param.present? && @type_param.blank?
       @project.issues.where("lower(summary) LIKE ?", "%#{@summary_param}%")
 
     elsif @type_param.present? && @summary_param.blank?
-      @project.issues.where("Issue.issue_types.key(issue_type) LIKE ?", "%#{@type_param}%")
+      @project.issues.where(issue_type: @type_param)
 
     elsif @summary_param.present? && @type_param.present?
-      @project.issues.where("lower(summary) LIKE ? AND Issue.issue_types.key(issue_type) LIKE ?",
-                                "%#{@summary_param}%", "%#{@type_param}%")
+      @filters = @project.issues.where(issue_type: @type_param)
+      @filters.where("lower(summary) LIKE ?", "%#{@summary_param}%")
     end
   }
 
