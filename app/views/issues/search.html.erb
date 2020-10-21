@@ -13,6 +13,7 @@
         <th scope="col">Assigned Person</th>
         <th scope="col">Submitted Person</th>
         <th scope="col">Status</th>
+        <th scope="col">Close</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -52,6 +53,13 @@
           </td>
           <td>
             <%= issue.status %>
+          </td>
+          <td>
+            <% if issue.close_issue %>
+              <button type="button" class="btn btn-secondary btn-sm" disabled>
+                Closed
+              </button>
+            <% end %>
           </td>
           <td>
             <%= link_to 'Detail', issue_path(issue), class:"btn btn-sm mx-0 btn-outline-info" %>
