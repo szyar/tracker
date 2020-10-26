@@ -38,7 +38,7 @@ class IssuesController < ApplicationController
       flash[:notice] = "Issue Created"
       redirect_to @issue
     else
-      render 'new'
+      redirect_to new_issue_path, alert: @issue.errors.full_messages
     end
   end
 
@@ -73,7 +73,7 @@ class IssuesController < ApplicationController
       flash[:notice] = "Edited Successfully"
       redirect_to @issue
     else
-      render 'edit'
+      redirect_to edit_issue_path, alert: @issue.errors.full_messages
     end
   end
 
