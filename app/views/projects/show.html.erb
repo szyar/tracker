@@ -41,6 +41,10 @@ issues frequently and issues are the main cases for the project %>
           <%= link_to 'Status', sort: "status desc" %>
           <i class="fa fa-fw fa-sort"></i>
         </th>
+        <th scope="col" data-toggle="tooltip" title="Sort by Due Date!">
+          <%= link_to 'Due Date', sort: "due_date desc" %>
+          <i class="fa fa-fw fa-sort"></i>
+        </th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -86,6 +90,9 @@ issues frequently and issues are the main cases for the project %>
           </td>
           <td>
             <%= issue.status %>
+          </td>
+          <td>
+            <%= issue.due_date %>
           </td>
           <td>
             <%= link_to 'Detail', issue_path(issue), class:"btn btn-sm mx-0 btn-outline-info" %>
