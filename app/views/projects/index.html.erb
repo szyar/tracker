@@ -6,10 +6,12 @@
       <div class="card text-center mb-4 border border-info">
         <div class="card-header" style="background-color: #70adb5;">
           <h4><%= project.name %></h4>
+          <%= pluralize(project.issues.count, "issue") %>,
+          <%= pluralize(project.members.count, "member") %>
         </div>
         <div class="card-body">
           <p class="card-text"><%= project.description %></p>
-          <br>
+
           <%= link_to 'Show', project, class:"btn", style:"background-color: #70adb5;" %>
           <% if current_user.id == project.owner_id %>
             <%= link_to 'Edit', edit_project_path(project), class:"btn", style:"background-color: #70adb5;" %>
