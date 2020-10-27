@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post '/member/:id', to: 'project_members#create', as: 'member'
 
   get 'projects/:id/search', to: 'issues#search', as: 'search'
+  get 'issues/:id/done', to: 'issues#done', as: 'done_status'
   get 'issues/:id/close', to: 'issues#close_issue', as: 'close_issue'
   get 'projects/:id/close_list', to: 'issues#close_list', as: 'close_list'
 
