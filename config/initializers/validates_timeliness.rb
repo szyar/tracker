@@ -18,10 +18,10 @@ ValidatesTimeliness.setup do |config|
   # config.enable_multiparameter_extension!
   #
   # Shorthand date and time symbols for restrictions
-  # config.restriction_shorthand_symbols.update(
-  #   :now   => lambda { Time.current },
-  #   :today => lambda { Date.current }
-  # )
+  config.restriction_shorthand_symbols.update(
+    :now   => lambda { Time.current },
+    :today => lambda { Date.current }
+  )
   #
   # Use the plugin date/time parser which is stricter and extendable
   # config.use_plugin_parser = false
