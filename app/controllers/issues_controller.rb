@@ -30,16 +30,31 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @issue = Issue.new(issue_params)
+    # @issue = Issue.new(issue_params)
+    # @project = Project.find(params[:project_id])
+    # @issue.user_id = current_user.id
+    # @issue.project_id = @project.id
+    # if @issue.save
+    #   flash[:notice] = "Issue Created"
+    #   redirect_to @issue
+    # else
+    #   render 'new'
+    # end
+
     @project = Project.find(params[:project_id])
+    @member_names = []
+    @project.members.each do |member|
+      @member_names << member.username
+    end
+    @issue = @project.issues.build(issue_params)
     @issue.user_id = current_user.id
-    @issue.project_id = @project.id
     if @issue.save
       flash[:notice] = "Issue Created"
       redirect_to @issue
     else
-      redirect_to new_issue_path, alert: @issue.errors.full_messages
+      render 'new'
     end
+
   end
 
   def search

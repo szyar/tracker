@@ -1,6 +1,20 @@
 <div class="container text-center">
 
-  <%= form_with(model: @issue, url: create_issue_path(@project), method: "post", local: true) do |form| %>
+  <%= form_with(model: [@project, @issue], local: true) do |form| %>
+    <div class="container mb-2">
+      <% if @issue.errors.any? %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+          <% @issue.errors.full_messages.each do |message| %>
+            <p><%= message %></p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
     <div class="container col-9">
       <div class="card text-center">
         <div class="card-header bg-grey">
@@ -50,7 +64,6 @@
             <%= form.label :due_date %>:
             <%= form.datetime_field :due_date, class: 'form-control col-4' %>
           </p>
-
           <p class="card-text text-left">
             <%= form.label :image %>:
             <%= form.file_field :image %>
