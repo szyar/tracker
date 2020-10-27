@@ -7,7 +7,7 @@ issues frequently and issues are the main cases for the project %>
   <%= pluralize(@project.members.count, "member") %>
 </p>
 <% if @issues.present? %>
-  <table class="table table-hover">
+  <table class="table table-hover" width="100%">
     <div class="row">
       <h2 class="col-3">Issues List</h2>
       <h5 class="col"><%= will_paginate @active_issues, class:"text-center" %></h5>
@@ -30,24 +30,24 @@ issues frequently and issues are the main cases for the project %>
     <thead style="background-color: #70adb5;">
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Issues</th>
+        <th scope="col" style="width: 25%">Issues</th>
         <th scope="col" data-toggle="tooltip" title="Sort by Type!">
           <%= link_to 'Type', sort: "issue_type desc" %>
-          <i class="fa fa-fw fa-sort"></i>
+          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "issue_type desc" %>
         </th>
         <th scope="col" data-toggle="tooltip" title="Sort by Priority!">
           <%= link_to 'Priority', sort: "priority desc" %>
-          <i class="fa fa-fw fa-sort"></i>
+          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "priority desc" %>
         </th>
         <th scope="col">Assigned Person</th>
         <th scope="col">Submitted Person</th>
         <th scope="col" data-toggle="tooltip" title="Sort by Status!">
           <%= link_to 'Status', sort: "status desc" %>
-          <i class="fa fa-fw fa-sort"></i>
+          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "status desc" %>
         </th>
         <th scope="col" data-toggle="tooltip" title="Sort by Due Date!">
           <%= link_to 'Due Date', sort: "due_date desc" %>
-          <i class="fa fa-fw fa-sort"></i>
+          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "due_date desc" %>
         </th>
         <th scope="col">Action</th>
       </tr>
