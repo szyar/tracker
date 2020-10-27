@@ -30,7 +30,7 @@ issues frequently and issues are the main cases for the project %>
     <thead style="background-color: #70adb5;">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" style="width: 25%">Issues</th>
+        <th scope="col" style="width: 20%">Issues</th>
         <th scope="col" data-toggle="tooltip" title="Sort by Type!">
           <%= link_to 'Type', sort: "issue_type desc" %>
           <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "issue_type desc" %>
@@ -45,7 +45,7 @@ issues frequently and issues are the main cases for the project %>
           <%= link_to 'Status', sort: "status desc" %>
           <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "status desc" %>
         </th>
-        <th scope="col" data-toggle="tooltip" title="Sort by Due Date!">
+        <th scope="col" style="width: 20%" data-toggle="tooltip" title="Sort by Due Date!">
           <%= link_to 'Due Date', sort: "due_date desc" %>
           <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "due_date desc" %>
         </th>
