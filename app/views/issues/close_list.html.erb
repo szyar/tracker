@@ -1,12 +1,12 @@
 <% if @closed_issues.present? %>
+  <h2 class="text-center mb-3">Closed Issues List</h2>
   <table class="table">
     <div class="row">
-      <h2 class="col-3">Closed Issues List</h2>
-      <h5 class="col-6"><%= will_paginate @closed_issues, class:"text-center" %></h5>
       <h5 class="col">
         <span class="text-right">Project Name: </span>
         <%= link_to @project.name, project_path(@project), class:"text-right" %>
       </h5>
+      <h5 class="col"><%= will_paginate @closed_issues, class:"text-center" %></h5>
     </div>
     <thead style="background-color: #70adb5;">
       <tr>
