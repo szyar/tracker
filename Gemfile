@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'hirb'
 gem 'devise'
 gem 'will_paginate', '~> 3.1.0'
+gem 'validates_timeliness', '~> 5.0.0.beta1'
 # Use ActiveStorage variant
 
 gem 'carrierwave'
