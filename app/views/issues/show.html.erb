@@ -43,7 +43,9 @@
     <p class="issue-detail-text"><strong>Assigned person: </strong>
       <%= link_to @assigned_person.username, profile_path(@assigned_person) %>
     </p>
-    <p class="issue-detail-text"><strong>Status: </strong><%= @issue.status %></p>
+    <p class="issue-detail-text">
+      <strong>Status: </strong><%= @issue.status %>
+    </p>
     <% if @issue.due_date.present? %>
       <p class="issue-detail-text"><strong>Due Date: </strong><%= @issue.due_date.to_s(:long) %></p>
     <% end %>
@@ -68,6 +70,9 @@
 
     <% if current_user.id == @issue.user_id || current_user.id == @project.owner_id %>
       <% if !@issue.close_issue %>
+        <p class="btn btn-outline-success py-2 px-3" >
+          <%= link_to 'Done', done_status_path(@issue) %>
+        </p>
         <p class="btn btn-outline-success py-2 px-3" >
           <%= link_to 'Close Issue', close_issue_path(@issue) %>
         </p>

@@ -30,17 +30,6 @@ class IssuesController < ApplicationController
   end
 
   def create
-    # @issue = Issue.new(issue_params)
-    # @project = Project.find(params[:project_id])
-    # @issue.user_id = current_user.id
-    # @issue.project_id = @project.id
-    # if @issue.save
-    #   flash[:notice] = "Issue Created"
-    #   redirect_to @issue
-    # else
-    #   render 'new'
-    # end
-
     @project = Project.find(params[:project_id])
     @member_names = []
     @project.members.each do |member|
@@ -64,6 +53,13 @@ class IssuesController < ApplicationController
     else
       redirect_to project_path, notice: "Please provide the search keyword or select the issue type"
     end
+  end
+
+  def done
+    @issue = set_issue
+    @issue.status = 'Done'
+    @issue.save
+    redirect_to issue_path(@issue), notice: "Set Issue Status Done"
   end
 
   def close_issue
