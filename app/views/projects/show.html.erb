@@ -32,21 +32,24 @@ issues frequently and issues are the main cases for the project %>
         <th scope="col">#</th>
         <th scope="col" style="width: 20%">Issues</th>
         <th scope="col" data-toggle="tooltip" title="Sort by Type!">
-          <%= link_to 'Type', sort: "issue_type desc" %>
+          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "issue_type asc" %>
+          Type
           <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "issue_type desc" %>
         </th>
         <th scope="col" data-toggle="tooltip" title="Sort by Priority!">
-          <%= link_to 'Priority', sort: "priority desc" %>
+          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "priority asc" %>
+          Priority
           <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "priority desc" %>
         </th>
-        <th scope="col">Assigned Person</th>
-        <th scope="col">Submitted Person</th>
+        <th scope="col">Assigned person</th>
         <th scope="col" data-toggle="tooltip" title="Sort by Status!">
-          <%= link_to 'Status', sort: "status desc" %>
+          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "status asc" %>
+          Status
           <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "status desc" %>
         </th>
         <th scope="col" style="width: 20%" data-toggle="tooltip" title="Sort by Due Date!">
-          <%= link_to 'Due Date', sort: "due_date desc" %>
+          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "due_date asc" %>
+          Due Date
           <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "due_date desc" %>
         </th>
         <th scope="col">Action</th>
@@ -74,18 +77,6 @@ issues frequently and issues are the main cases for the project %>
               (Leader)
             <% else %>
               <% if project_member = ProjectMember.find_by(user_id: assigned_person.id, project_id: @project) %>
-                (<%= project_member.role %>)
-              <% else %>
-                (Remove)
-              <% end %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to issue.user.username, profile_path(issue.user) %>
-            <% if issue.user.id == @project.owner_id %>
-              (Leader)
-            <% else %>
-              <% if project_member = ProjectMember.find_by(user_id: issue.user, project_id: @project) %>
                 (<%= project_member.role %>)
               <% else %>
                 (Remove)
