@@ -53,30 +53,35 @@ ProjectMember.create(role: 'Developer', user_id: 6, project_id: 5)
 ProjectMember.create(role: 'Developer', user_id: 5, project_id: 2)
 ProjectMember.create(role: 'Developer', user_id: 2, project_id: 3)
 
+Issue.create(user_id: 4, project_id: 12, summary: 'test due date new validation',
+  detail: 'test due date new validation detail',
+  issue_type: 'Feature', priority: 2, assigned_person: 'hello',
+  status: 'Assigned')
+
 Issue.create(user_id: 4, project_id: 12, summary: 'add sorting feature',
               detail: 'sort by type, status, priority and dates',
-              issue_type: 'Feature', priority: 2, assigned_person: 5,
+              issue_type: 'Feature', priority: 2, assigned_person: 'test5',
               status: 'Assigned')
 
 Issue.create(user_id: 5, project_id: Project.first, summary: 'test issue 1',
               detail: 'test detail 1', issue_type: 'Other',
-              priority: 1, assigned_person: 5, status: 'Assigned')
+              priority: 1, assigned_person: 'test5', status: 'Assigned')
 
 Issue.create(user_id: 6, project_id: Project.first, summary: 'test issue 2',
               detail: 'test detail 2', issue_type: 'Bug',
-              priority: 3, assigned_person: 6, status: 'Assigned')
+              priority: 3, assigned_person: 'test6', status: 'Assigned')
 
 Issue.create(user_id: 4, project_id: Project.first, summary: 'test issue 3',
               detail: 'test detail 3', issue_type: 'Error',
-              priority: 1, assigned_person: 4, status: 'Assigned')
+              priority: 1, assigned_person: 'test4', status: 'Assigned')
 
 Issue.create(user_id: 5, project_id: Project.first, summary: 'test issue 4',
               detail: 'test detail 1', issue_type: 'Fatal',
-              priority: 1, assigned_person: 5, status: 'Assigned')
+              priority: 1, assigned_person: 'test5', status: 'Assigned')
 
 Issue.create(user_id: 6, project_id: Project.first, summary: 'test issue 5',
               detail: 'test detail 1', issue_type: 'Other',
-              priority: 1, assigned_person: 6, status: 'Assigned')
+              priority: 1, assigned_person: 'test6', status: 'Assigned')
 
 Comment.create(user_id: 6, issue_id: 10, content: 'test comment')
 Comment.create(user_id: 4, issue_id: 1, content: 'test comment')

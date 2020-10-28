@@ -8,7 +8,7 @@ class Issue < ApplicationRecord
   validates :issue_type, presence: true
   validates :priority, presence: true
   validates :assigned_person, presence: true
-  validates_datetime :due_date, on_or_after: :today
+  validates_datetime :due_date, allow_blank: true, on_or_after: :today
   validates :status, presence: true
 
   mount_uploader :image, ImageUploader
