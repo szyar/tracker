@@ -22,4 +22,6 @@ Rails.application.routes.draw do
 
   delete 'project_members/:id', to: 'project_members#destroy', as: 'remove'
 
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+
 end
