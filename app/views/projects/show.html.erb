@@ -32,25 +32,41 @@ issues frequently and issues are the main cases for the project %>
         <th scope="col">#</th>
         <th scope="col" style="width: 20%">Issues</th>
         <th scope="col" data-toggle="tooltip" title="Sort by Type!">
-          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "issue_type asc" %>
+          <span data-toggle="tooltip" title="ASC">
+            <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "issue_type asc" %>
+          </span>
           Type
-          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "issue_type desc" %>
+          <span data-toggle="tooltip" title="DESC">
+            <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "issue_type desc" %>
+          </span>
         </th>
         <th scope="col" data-toggle="tooltip" title="Sort by Priority!">
-          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "priority asc" %>
+          <span data-toggle="tooltip" title="ASC">
+            <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "priority asc" %>
+          </span>
           Priority
-          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "priority desc" %>
+          <span data-toggle="tooltip" title="DESC">
+            <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "priority desc" %>
+          </span>
         </th>
         <th scope="col">Assigned person</th>
         <th scope="col" data-toggle="tooltip" title="Sort by Status!">
-          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "status asc" %>
+          <span data-toggle="tooltip" title="ASC">
+            <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "status asc" %>
+          </span>
           Status
-          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "status desc" %>
+          <span data-toggle="tooltip" title="DESC">
+            <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "status desc" %>
+          </span>
         </th>
         <th scope="col" style="width: 20%" data-toggle="tooltip" title="Sort by Due Date!">
-          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "due_date asc" %>
+          <span data-toggle="tooltip" title="ASC">
+            <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "due_date asc" %>
+          </span>
           Due Date
-          <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "due_date desc" %>
+          <span data-toggle="tooltip" title="DESC">
+            <%= link_to '<i class="fa fa-fw fa-sort"></i>'.html_safe, sort: "due_date desc" %>
+          </span>
         </th>
         <th scope="col">Action</th>
       </tr>
