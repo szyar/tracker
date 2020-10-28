@@ -42,7 +42,9 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    if current_user == @comment.user
+    @issue = @comment.issue
+    @project = @issue.project
+    if current_user == @comment.user || current_user.id = @project.owner_id
       @comment.destroy
       respond_to do |format|
         flash.now[:alert] = 'Comment deleted'
