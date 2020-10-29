@@ -24,7 +24,7 @@ RSpec.feature "ProjectMembers", type: :feature do
         fill_in('Enter the email', with: 'user2@gmail.com')
         select 'Tester', from: :role
         click_button "Invite"
-        click_link "Remove"
+        click_link "Remove", match: :first
         expect(page).to have_content("Remove member successfully")
       end
     end
