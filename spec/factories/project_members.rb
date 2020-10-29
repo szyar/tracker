@@ -14,4 +14,9 @@ FactoryBot.define do
     user_id { 3 }
     project_id { 1 }
   end
+  factory :project_member4, class: ProjectMember do
+    role { 'Developer' }
+    user_id { 4 }
+    project_id { 1 }
+  end
 end

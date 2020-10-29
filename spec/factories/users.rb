@@ -17,4 +17,10 @@ FactoryBot.define do
     password { 'hellouser3' }
   end
 
+  factory :user4, class: User do
+    username { 'User4' }
+    email { 'user4@gmail.com' }
+    password { 'hellouser4' }
+  end
+
 end

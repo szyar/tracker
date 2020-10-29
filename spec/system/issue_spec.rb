@@ -1,17 +1,17 @@
 require 'rails_helper'
 
 RSpec.feature "Issues", type: :feature do
-  FactoryBot.create(:user1)
-  FactoryBot.create(:user2)
-  FactoryBot.create(:user3)
-  FactoryBot.create(:project1)
-  FactoryBot.create(:project2)
-  FactoryBot.create(:project_member1)
-  FactoryBot.create(:project_member2)
-  FactoryBot.create(:project_member3)
-  FactoryBot.create(:issue1)
-  FactoryBot.create(:issue2)
-  FactoryBot.create(:issue3)
+  # FactoryBot.create(:user1)
+  # FactoryBot.create(:user2)
+  # FactoryBot.create(:user3)
+  # FactoryBot.create(:project1)
+  # FactoryBot.create(:project2)
+  # FactoryBot.create(:project_member1)
+  # FactoryBot.create(:project_member2)
+  # FactoryBot.create(:project_member3)
+  # FactoryBot.create(:issue1)
+  # FactoryBot.create(:issue2)
+  # FactoryBot.create(:issue3)
   describe "Issue crud test" do
     context "Register a new issue" do
       before(:each) do
@@ -147,7 +147,7 @@ RSpec.feature "Issues", type: :feature do
         click_link "Show", match: :first
         issue_list = project.issues.all.order(status: :desc)
         issue = issue_list.first
-        expect(issue.summary).to eq("test summary2")
+        expect(issue.summary).to eq("test summary1")
       end
     end
   end
